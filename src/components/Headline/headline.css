@@ -1,0 +1,62 @@
+.headline {
+    background-color: #eee;
+    padding: 10px 0px 0px 0px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+}
+
+input {
+    font-size: 100%;
+    width: 95%;
+    padding-left: 30px;
+    text-indent: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 16px;
+}
+
+
+button {
+
+}
+
+button.ask-question {
+    background-color: #1171ba;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    border-radius: 4px;
+    margin: 8px;
+    padding: 8px 16px;
+}
+
+form {
+    text-align: left;
+}
+
+.search-icon {
+    display: flex;
+    position: relative;
+    left: 20px;
+    top: 25px;
+}
+
+.tabs ul {
+    display: flex;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+
+li.active {
+    border-bottom: 5px solid orange;
+
+}

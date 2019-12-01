@@ -1,0 +1,29 @@
+ul {
+    list-style: none;
+    text-align: left;
+    padding: 0px;
+  }
+
+  li {
+    display: flex;
+    padding: 10px;
+  }
+
+
+  /*
+  LARGER SCREENS
+   .qa-item { 
+      display: flex; 
+    }
+
+    .answers, .votes {
+      display: block;
+  }
+
+  .stats {
+    font-size: 70%;
+    text-align: center;
+    padding-right: 15px;
+    align-items: bottom;
+  }
+  */
