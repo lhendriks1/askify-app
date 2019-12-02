@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTags } from '@fortawesome/free-solid-svg-icons'
 import './QuestionListItem.css';
 
-function QuestionMain(props) {
+function QuestionListItem(props) {
     const {title, author, date, question, answers, votes, tags} = props
     
 // Count total answers for each question    
@@ -15,7 +15,7 @@ function QuestionMain(props) {
 
 
     const tagItems = tags.map((item, key) => 
-        <li class="tags">{item}</li>)
+        <li className="tags" key={key}>{item}</li>)
 
 //update plurality of nouns
     const ans = (answerCount == 1) ? "answer" : "answers"
@@ -29,7 +29,7 @@ function QuestionMain(props) {
                 <div className="answers">{answerCount} {ans}</div>
                 <div className="votes">{voteCount} {vote}</div>
             </div>
-            <div class="question">
+            <div className="question">
                 <span className="title">{title}</span>
                 <span className="question-details">{question}</span>
             </div>
@@ -44,4 +44,4 @@ function QuestionMain(props) {
     )
 }
 
-export default QuestionMain;
+export default QuestionListItem;

@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Provider} from './QaContext';
+import React, {useEffect, useContext} from 'react';
+import {Provider, QAContext} from './QaContext';
 import Nav from './components/Nav/nav'
 import Headline from './components/Headline/headline'
 import QuestionsNav from './components/QuestionsNav/QuestionsNav'
@@ -8,10 +8,12 @@ import './App.css'
 function App() {
 
   useEffect(() => console.log('mounted or updated'));
-  //figure out why empty array. Need to update state with data value 
+  const {error} = useContext(QAContext)
+  const errorDiv = error ? <div className="error">{error}</div> : '';
 
   return (
     <Provider>
+        {errorDiv}
         <Nav/>
         <Headline/>
         <QuestionsNav/>

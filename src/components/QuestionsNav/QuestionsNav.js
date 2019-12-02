@@ -1,18 +1,19 @@
 import React, {useContext} from 'react';
 import {QAContext} from '../../QaContext';
 import './QuestionsNav.css';
-import QuestionMain from '../QuestionMain/QuestionListItem';
+import QuestionListItem from '../QuestionListItem/QuestionListItem';
 
 function QuestionsNav() {
 
   const qaContext = useContext(QAContext)
-  const {QA} = qaContext;
+  const {filteredResults} = qaContext;
 
-    const questions = QA.map((q, key) => 
-      <QuestionMain {...q} key={key}/>)
+    const questions = filteredResults.map((q, key) => 
+      <QuestionListItem {...q} key={key}/>)
 
     return(
         <section className="section-QAList">
+          {!filteredResults.length && <p>0 unaswered questions</p>}
           {questions}
         </section>
     )

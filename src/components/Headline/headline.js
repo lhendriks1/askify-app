@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {QAContext} from '../../QaContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,16 +6,18 @@ import './headline.css';
 
 function Headline() {
     const qaContext = useContext(QAContext)
-    const {filterValue, setFilterValue} = qaContext;
+    const {updateView} = qaContext;
+    const [view, setView] = useState("all")
 
     const handleClick = e => {
-        console.log(e.currentTarget.id)
+        updateView(e.target.id)
+        setView(e.target.id)
     }
 
-    const items = ["all", "unaswered", "popular", "newest"]
+    const items = ["all", "unanswered", "popular", "newest"]
     const filterList =
         items.map((item, idx) => {
-            return <li key={idx} className="tab" onClick={handleClick} id={item}>{item}</li>
+            return <li key={idx} className={`tab ${item === view ? "active" : ""}`} onClick={handleClick} id={item}>{item}</li>
         })
 
     return (
