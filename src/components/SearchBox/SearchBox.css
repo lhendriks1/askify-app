@@ -1,0 +1,26 @@
+input {
+    font-size: 100%;
+    width: 95%;
+    padding-left: 30px;
+    text-indent: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 16px;
+}
+
+form {
+    text-align: left;
+    width: 100%;
+}
+
+.search-bar {
+    display: flex;
+    margin: 8px;
+}
+
+.search-icon {
+    display: inline-block;
+    position: relative;
+    left: 25px;
+    top: 8px;
+}

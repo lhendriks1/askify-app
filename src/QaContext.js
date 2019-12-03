@@ -12,18 +12,29 @@ export const Provider = props => {
 
     //Use state to keep the values
     const [results, setResults] = useState(DATA)
-    const [filteredResults, setFilteredResults] = useState(results)
+    const [searchResults, setSearchResults] = useState(results)
+    const [displayedResults, setDisplayedResults] = useState(results)
     const [query, setQuery] = useState('')
+    const [view, setView] = useState("all")
 //TODO: add maxResults and pagination functionality
     const [maxResults, setmaxResults] = useState('')
     const [error, setError] = useState('')
 
 //TODO: move logic to helpers.js file
-    function updateView(view) {
-        console.log('updateview called')
-        let newFilteredResults
+
+    function filterBySearchTerm(searchTerm) {
+        const regexSearchTerm = new RegExp(searchTerm, 'gi')
+        const newSearchResults = [...results].filter(q => regexSearchTerm.test(q.tags) || regexSearchTerm.test(q.title) || regexSearchTerm.test(q.question));
+        setSearchResults(newSearchResults)
+        setDisplayedResults(newSearchResults)
+        updateView(newSearchResults)
+    }
+
+    function filterBySelectedView() {
+        let newFilterResults;
+
         if (view === 'unanswered') {
-            newFilteredResults = results.filter(q => q.answers.length === 0)
+            newFilterResults = [...searchResults].filter(q => q.answers.length === 0)
         } 
         else if (view === 'popular') {
             function compare(a, b) {
@@ -38,8 +49,7 @@ export const Provider = props => {
                 }
                 return comparison
             }
-            newFilteredResults  = [...results].sort(compare)
-            console.log(newFilteredResults)
+            newFilterResults  = [...searchResults].sort(compare)
         }
         else if (view === 'newest') {
             function compare(a, b) {
@@ -50,28 +60,36 @@ export const Provider = props => {
                 if (dateA > dateB) {
                     comparison = -1;
                 } else if (dateA < dateB) {
-                    comarison = 1
+                    comparison = 1
                 }
                 return comparison
             }
-            newFilteredResults  = [...results].sort(compare)
-            console.log(newFilteredResults)
+            newFilterResults  = [...searchResults].sort(compare)
         }
         else {
-            newFilteredResults = [...results]
-            console.log(newFilteredResults)
+            newFilterResults = [...searchResults]
         }
+        updateView(newFilterResults)
+    }
 
-        setFilteredResults(newFilteredResults)
+    function updateView(results) {
+        setDisplayedResults(results)
     }
 
     //make the context object
     const qaContext = {
         results,
         setResults,
+        view,
+        setView,
+        query,
+        setQuery,
+        displayedResults,
+        setDisplayedResults,
+        filterBySearchTerm,
+        filterBySelectedView,
         updateView,
-        filteredResults,
-        error
+        error,
     };
     
     //pass the value in provider and return
