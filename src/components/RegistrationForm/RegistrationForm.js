@@ -29,7 +29,7 @@ export default function RegistrationForm(props) {
             {errorDiv}
             <div className='full_name'>
                 <label htmlFor='RegistrationForm__full_name'>
-                    Full name <Required />
+                    Full name
                 </label>
                 <Input
                     name='full_name'
@@ -40,7 +40,7 @@ export default function RegistrationForm(props) {
             </div>
             <div className='user_name'>
                 <label htmlFor='RegistrationForm__user_name'>
-                    User name <Required />
+                    User name
                 </label>
                 <Input
                     name='user_name'
@@ -51,7 +51,7 @@ export default function RegistrationForm(props) {
             </div>
             <div className='password'>
                 <label htmlFor='RegistrationForm__password'>
-                    Password <Required />
+                    Password
                 </label>
                 <Input
                     name='password'
