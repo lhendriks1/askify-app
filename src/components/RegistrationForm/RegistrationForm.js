@@ -27,7 +27,7 @@ export default function RegistrationForm(props) {
             onSubmit={handleSubmit}
         >
             {errorDiv}
-            <div classname='full_name'>
+            <div className='full_name'>
                 <label htmlFor='RegistrationForm__full_name'>
                     Full name <Required />
                 </label>

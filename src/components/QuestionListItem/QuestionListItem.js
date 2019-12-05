@@ -5,13 +5,15 @@ import './QuestionListItem.css';
 
 function QuestionListItem(props) {
     const { id, title, author, date, question, answers, votes, tags} = props
+    
     const answerCount = answers.length
     const ans = (answerCount == 1) ? "answer" : "answers"
-// Count total votes for each question
+
+    // Count total votes for each question
     let voteCount = 0
     const vote = (voteCount == 1) ? "vote" : "votes"  
     answers.forEach(ans => voteCount += Number(ans.votes))
-
+    
     return (
         <section className="qa-item">
             <div className="stats">

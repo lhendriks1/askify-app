@@ -11,7 +11,7 @@ export default function LandingPage() {
     return (
         <>
             <div className="homepage-wrapper">
-                <section class="section-one landing-page">
+                <section className="section-one landing-page">
                     <h1>Askify</h1>
                     <span className="tagline">Your team's dedicated Q&A platform</span>
                     <p>Askify connects users across team lines to fill information gaps, increase innovation, and stimulate leadership. Tap into the knowledge of experienced employees and start leveraging and growing your organizational knowledge base.</p>

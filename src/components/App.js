@@ -1,14 +1,14 @@
 import React, {useEffect, useContext} from 'react';
-import {QAContext} from './QaContext';
+import {QAContext} from '../QaContext';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './routes/LandingPage/LandingPage';
-import RegistrationPage from './routes/RegistrationPage/RegistrationPage';
-import LoginPage from './routes/LoginPage/LoginPage';
-import QuestionPage from './routes/QuestionPage/QuestionPage';
-import QuestionForm from './routes/QuestionForm/QuestionForm';
+import LandingPage from '../routes/LandingPage/LandingPage';
+import RegistrationPage from '../routes/RegistrationPage/RegistrationPage';
+import LoginPage from '../routes/LoginPage/LoginPage';
+import QuestionPage from '../routes/QuestionPage/QuestionPage';
+import QuestionForm from '../routes/QuestionForm/QuestionForm';
 
-import Nav from './components/Nav/nav'
-import QuestionsNavPage from './routes/QuestionsNavPage/QuestionsNavPage'
+import Nav from './Nav/nav'
+import QuestionsNavPage from '../routes/QuestionsNavPage/QuestionsNavPage'
 import './App.css'
 
 function App() {

@@ -42,7 +42,7 @@ export default function LoginForm(props) {
                     >    
                 </Input>
             </div>
-            <div clssName='password'>
+            <div className='password'>
                 <label htmlFor="LoginForm__password">
                     Password
                 </label>

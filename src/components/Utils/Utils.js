@@ -17,7 +17,7 @@ export function Input({ className, ...props }) {
 
 export function Required({ className, ...props}) {
     return (
-        <span classname={['Input', className].join(' ')} {...props}>
+        <span className={['Input', className].join(' ')} {...props}>
             &#42;
         </span>
     )
