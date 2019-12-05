@@ -1,0 +1,18 @@
+ul.tags {
+    margin: 0px 6px;
+}
+
+.div-tags, ul.tags {
+    display: flex;
+    align-items: center;
+}
+
+
+li.tags {
+    background-color: #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 8px;
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+}

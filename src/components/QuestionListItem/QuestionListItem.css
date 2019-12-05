@@ -4,6 +4,7 @@ hr {
 
 .title {
     font-weight: bold;
+    /* font-size: 18px; */
 }
 
 .question {
@@ -12,8 +13,20 @@ hr {
 
 .question-details {
     display: block;
-    font-size: 14px;
     margin-bottom: 6px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    @supports (-webkit-line-clamp: 2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
 }
 
 .qa-item {
@@ -22,12 +35,12 @@ hr {
     align-content: center;
 }
 
-.stats, .div-tags, ul.tags {
+.stats {
     display: flex;
     align-items: center;
 }
 
-.answers, .votes, li.tags {
+.answers, .votes {
     border-radius: 4px;
     font-size: 14px;
     margin-right: 8px;
@@ -35,12 +48,10 @@ hr {
     padding: 4px 8px;
 }
 
-ul.tags {
-    margin: 0px 6px;
-}
-
-li.tags {
-    background-color: #ddd;
+a {
+    font-weight: normal;
+    /* color: inherit; */
+    /* text-decoration: inherit; */
 }
 
 

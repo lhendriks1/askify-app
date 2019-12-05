@@ -13,7 +13,7 @@
 
 nav,
 footer {
-  padding: 2px;
+  padding: 10px;
   background-color: #aaa;
 }
 
@@ -26,13 +26,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 50px;
     padding: 0px 10px;
   }
 
-  .logo {
-    height: 30px;
-    margin: 8px 0px;
-  }
+a {
+  text-decoration: none;
+}
 
   /* .nav-options {  
   }

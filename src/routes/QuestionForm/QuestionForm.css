@@ -1,0 +1,27 @@
+fieldset {
+    border: none;
+}
+
+label:not(:first-of-type) {
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea {
+    border: 1px solid #aaa;
+    width: 100%;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+.question-form {
+    padding: 0px 10px 10px 10px;
+    text-align: left;
+}
+
+#tagConstraint {
+    font-size: 12px;
+}

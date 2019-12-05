@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
 import {QAContext} from '../../QaContext';
-import './QuestionsNav.css';
-import QuestionListItem from '../QuestionListItem/QuestionListItem';
+import './QuestionsNavPage.css';
+import QuestionListItem from '../../components/QuestionListItem/QuestionListItem';
+import Headline from '../../components/Headline/headline';
 
-function QuestionsNav() {
+function QuestionsNavPage() {
 
   const qaContext = useContext(QAContext)
   const {displayedResults} = qaContext;
@@ -12,11 +13,14 @@ function QuestionsNav() {
       <QuestionListItem {...q} key={key}/>)
 
     return(
+      <>
+        <Headline />
         <section className="section-QAList">
           {!displayedResults.length && <p>0 unaswered questions</p>}
           {questions}
         </section>
+      </>
     )
 }
 
-export default QuestionsNav;
+export default QuestionsNavPage;

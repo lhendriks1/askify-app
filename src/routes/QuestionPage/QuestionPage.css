@@ -1,0 +1,54 @@
+.QuestionPage {
+    padding: 0px 10px 10px 10px;
+    text-align: left;
+}
+
+.ul-answers li, ul, p {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+
+.QuestionPage__votes-count * {
+    display: block;
+}
+
+.QuestionPage__votes-count {
+    margin-right: 16px;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.answer-container {
+    display: flex;
+    align-items: center;
+}
+
+button.back {
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+}
+
+button.answer, button.post-question {
+    background-color: #1171ba;
+    color: white;
+    margin-top: 10px;
+    border-radius: 4px;
+    padding: 8px 16px;
+}
+
+textarea, label {
+    display: block;
+}
+
+textarea {
+    border: 1px solid #aaa;
+    width: 100%;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+
+
+

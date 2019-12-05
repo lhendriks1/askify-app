@@ -18,15 +18,15 @@ export const Provider = props => {
     const [view, setView] = useState("all")
 //TODO: add maxResults and pagination functionality
     const [maxResults, setmaxResults] = useState('')
+    const [loginStatus, setLoginStatus] = useState(false)
     const [error, setError] = useState('')
 
 //TODO: move logic to helpers.js file
 
     function filterBySearchTerm(searchTerm) {
         const regexSearchTerm = new RegExp(searchTerm, 'gi')
-        const newSearchResults = [...results].filter(q => regexSearchTerm.test(q.tags) || regexSearchTerm.test(q.title) || regexSearchTerm.test(q.question));
+        const newSearchResults = results.filter(q => regexSearchTerm.test(q.tags) || regexSearchTerm.test(q.title) || regexSearchTerm.test(q.question));
         setSearchResults(newSearchResults)
-        setDisplayedResults(newSearchResults)
         updateView(newSearchResults)
     }
 
@@ -34,7 +34,7 @@ export const Provider = props => {
         let newFilterResults;
 
         if (view === 'unanswered') {
-            newFilterResults = [...searchResults].filter(q => q.answers.length === 0)
+            newFilterResults = searchResults.filter(q => q.answers.length === 0)
         } 
         else if (view === 'popular') {
             function compare(a, b) {
@@ -90,6 +90,9 @@ export const Provider = props => {
         filterBySelectedView,
         updateView,
         error,
+        setError,
+        loginStatus,
+        setLoginStatus
     };
     
     //pass the value in provider and return

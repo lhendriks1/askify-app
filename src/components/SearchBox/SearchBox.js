@@ -13,19 +13,20 @@ export default function SearchBox() {
         filterBySearchTerm(e.target.value)
     }
 
+
     return(
-        <div className="search-bar">
-            <div className="search-icon"><FontAwesomeIcon icon={faSearch}/></div>
+        <div className='search-bar'>
+            <div className='search-icon'><FontAwesomeIcon icon={faSearch}/></div>
             <form
             >
-                <label id="search-term"></label>
+                <label htmlFor='search-term'></label>
                 <input 
+                    id='search-term'
                     onChange={handleChange}
-                    placeholder="Search term" 
+                    placeholder='Search term'
                     value={query}
-                    type="text" 
-                    name="search-term" 
-                    id="search-term"
+                    type='text' 
+                    name='search-term'
                 />
             </form>
         </div>

@@ -1,8 +1,9 @@
 import React, {useContext, useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import {QAContext} from '../../QaContext';
 import SearchBox from '../SearchBox/SearchBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+// import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import './headline.css';
 
 function Headline() {
@@ -27,7 +28,9 @@ function Headline() {
         <section className="headline">
             <div>
                 {/* <span className="q-count">145 Questions</span> */}
-                <button type="button" className="ask-question"><FontAwesomeIcon icon={faPlus}/> Ask a question</button>
+                <Link to="/new-question">
+                    <button type="button" className="ask-question">Ask Question</button>
+                </Link>
             </div>
         <SearchBox />
         <div className="tabs">
