@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import { QAContext } from '../../QaContext';
 import TokenServices from '../../services/token-service';
-import Confirm from '../../components/Confirm/Confirm';
 import { Button, Input, Required } from '../Utils/Utils'
 
 export default function RegistrationForm(props) {
