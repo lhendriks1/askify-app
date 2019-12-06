@@ -1,6 +1,6 @@
 .headline {
     background-color: #eee;
-    padding: 10px 0px 0px 0px;
+    padding: 0px;
 }
 
 button.ask-question {
@@ -9,7 +9,7 @@ button.ask-question {
     font-weight: 500;
     color: white;
     border-radius: 4px;
-    margin: 8px;
+    margin: 40px 0px 16px;
     padding: 8px 16px;
 }
 
@@ -23,4 +23,29 @@ button.ask-question {
 li.active {
     border-bottom: 5px solid orange;
 
+}
+
+.registration-msg {
+    position: absolute;
+    width: 100%;
+    font-size: 14px;
+    color: rgb(4, 90, 4);
+    background-color: rgb(162, 194, 144);
+    line-height: 2.25;
+    margin: 0px;
+    animation-delay: 8s;
+    animation-duration: 2s;
+    animation-name: slideout;
+}
+
+@keyframes slideout {
+    from {
+        margin-left:0%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: 100%;
+        width: 300%;
+    }
 }

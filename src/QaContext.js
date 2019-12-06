@@ -10,19 +10,19 @@ export const Provider = props => {
         children
     } = props;
 
-    //Use state to keep the values
+//Use state to keep the values
     const [results, setResults] = useState(DATA)
     const [searchResults, setSearchResults] = useState(results)
     const [displayedResults, setDisplayedResults] = useState(results)
     const [query, setQuery] = useState('')
-    const [view, setView] = useState("all")
+    const [view, setView] = useState("newest")
 //TODO: add maxResults and pagination functionality
     const [maxResults, setmaxResults] = useState('')
+    const [registrationMsg, setRegistrationMsg] = useState("")
     const [loginStatus, setLoginStatus] = useState(false)
     const [error, setError] = useState('')
 
 //TODO: move logic to helpers.js file
-
     function filterBySearchTerm(searchTerm) {
         const regexSearchTerm = new RegExp(searchTerm, 'gi')
         const newSearchResults = results.filter(q => regexSearchTerm.test(q.tags) || regexSearchTerm.test(q.title) || regexSearchTerm.test(q.question));
@@ -92,7 +92,9 @@ export const Provider = props => {
         error,
         setError,
         loginStatus,
-        setLoginStatus
+        setLoginStatus,
+        registrationMsg,
+        setRegistrationMsg
     };
     
     //pass the value in provider and return

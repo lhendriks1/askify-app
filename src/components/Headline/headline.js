@@ -3,12 +3,12 @@ import {Link} from 'react-router-dom';
 import {QAContext} from '../../QaContext';
 import SearchBox from '../SearchBox/SearchBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faUserCheck } from '@fortawesome/free-solid-svg-icons'
 import './headline.css';
 
 function Headline() {
     const qaContext = useContext(QAContext)
-    const { view, setView, filterBySelectedView} = qaContext;
+    const { view, setView, filterBySelectedView, registrationMsg } = qaContext;
 
     const handleClick = e => {
         setView(e.target.id)
@@ -17,15 +17,17 @@ function Headline() {
 
     useEffect(() => filterBySelectedView(), [view])
 
-
-    const items = ["all", "unanswered", "popular", "newest"]
+    const items = ["newest", "popular", "unanswered", "all"]
     const filterList =
         items.map((item, idx) => {
             return <li key={idx} className={`tab ${item === view ? "active" : ""}`} onClick={handleClick} id={item}>{item}</li>
         })
 
+        const msgDiv = registrationMsg ? <div className="registration-msg"><FontAwesomeIcon icon={faUserCheck} /> {registrationMsg}</div> : '';
+
     return (
         <section className="headline">
+            {msgDiv}
             <div>
                 {/* <span className="q-count">145 Questions</span> */}
                 <Link to="/new-question">

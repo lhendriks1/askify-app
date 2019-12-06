@@ -17,11 +17,6 @@ export default function Nav(props) {
         TokenService.clearAuthToken()
     }
 
-    useEffect(() => 
-        () => LoginOrLogout(),
-        [loginStatus]
-    )
-
     function LoginOrLogout() {
         return TokenService.hasAuthToken() ? renderLogoutLink() : renderLoginLink()
     }

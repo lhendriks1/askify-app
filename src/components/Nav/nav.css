@@ -11,10 +11,12 @@
     line-height: 1.4;
   }
 
-nav,
+nav, footer {
+  background-color: #aaa;
+}
+
 footer {
   padding: 10px;
-  background-color: #aaa;
 }
 
 nav {

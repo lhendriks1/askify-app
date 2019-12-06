@@ -1,5 +1,7 @@
 import React, {useContext} from 'react';
 import { QAContext } from '../../QaContext';
+import TokenServices from '../../services/token-service';
+import Confirm from '../../components/Confirm/Confirm';
 import { Button, Input, Required } from '../Utils/Utils'
 
 export default function RegistrationForm(props) {
@@ -12,7 +14,8 @@ export default function RegistrationForm(props) {
     const handleSubmit = ev => {
         ev.preventDefault()
         const { full_name, user_name, password } = ev.target
-
+        const token = TokenServices.makeBasicAuthToken(user_name, password)
+        TokenServices.saveAuthToken(token)
         console.log('registration form submitted')
         console.log({full_name, user_name, password})
 

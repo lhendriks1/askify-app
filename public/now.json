@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "alias": "askify",
     "name": "askify-app",
     "routes": [
         { "handle": "filesystem" },
