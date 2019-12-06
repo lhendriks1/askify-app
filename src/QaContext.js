@@ -1,9 +1,6 @@
 import React, {createContext, useState} from 'react';
 import DATA from './datastore.js'
-
-
 export const QAContext = createContext({});
-
 export const Provider = props => {
 //Initial values will be obtained from props
     const {
@@ -18,13 +15,13 @@ export const Provider = props => {
     const [view, setView] = useState("newest")
 //TODO: add maxResults and pagination functionality
     const [maxResults, setmaxResults] = useState('')
-    const [registrationMsg, setRegistrationMsg] = useState("")
+    const [registrationMsg, setRegistrationMsg] = useState('')
     const [loginStatus, setLoginStatus] = useState(false)
     const [error, setError] = useState('')
 
 //TODO: move logic to helpers.js file
     function filterBySearchTerm(searchTerm) {
-        const regexSearchTerm = new RegExp(searchTerm, 'gi')
+        const regexSearchTerm = new RegExp(searchTerm, "gi")
         const newSearchResults = results.filter(q => regexSearchTerm.test(q.tags) || regexSearchTerm.test(q.title) || regexSearchTerm.test(q.question));
         setSearchResults(newSearchResults)
         updateView(newSearchResults)
@@ -104,5 +101,4 @@ export const Provider = props => {
         </QAContext.Provider>
     )
 }
-
 export const {Consumer} = QAContext;

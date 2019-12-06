@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Tags from '../Tags/Tags';
 import './QuestionListItem.css';
 
-function QuestionListItem(props) {
-    const { id, title, author, date, question, answers, votes, tags} = props
+export default function QuestionListItem(props) {
+    const { id, title, author, date, question, answers, tags} = props
     
     const answerCount = answers.length
     const ans = (answerCount == 1) ? "answer" : "answers"
@@ -27,9 +27,8 @@ function QuestionListItem(props) {
                     <p className="question-details">{question}</p>
             </div>
             <Tags tags={tags} />
+            <div className="QuestionListItem__author-date">Asked {(new Date(date).toLocaleDateString())} by {author}.</div>
             <hr/>
         </section>
     )
 }
-
-export default QuestionListItem;

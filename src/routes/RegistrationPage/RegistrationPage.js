@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Section } from '../../components/Utils/Utils';
 import { QAContext } from '../../QaContext';
-import TokenServices from '../../services/token-service';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 
 export default function RegistrationPage(props) {

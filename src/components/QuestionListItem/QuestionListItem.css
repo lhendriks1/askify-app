@@ -54,4 +54,9 @@ a {
     /* text-decoration: inherit; */
 }
 
+.QuestionListItem__author-date {
+    font-size: 12px;
+    /* text-align: right; */
+}
+
 

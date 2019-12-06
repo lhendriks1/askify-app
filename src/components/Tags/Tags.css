@@ -1,5 +1,6 @@
 ul.tags {
-    margin: 0px 6px;
+    margin-left: 6px;
+    margin-bottom: 6px;
 }
 
 .div-tags, ul.tags {

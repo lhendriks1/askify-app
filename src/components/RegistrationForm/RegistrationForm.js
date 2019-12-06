@@ -63,6 +63,15 @@ export default function RegistrationForm(props) {
                     >
                 </Input>
             </div>
+            <div className='confirm-password'>
+                <label htmlFor="LoginForm__confirm-password">
+                    Retype Password
+                </label>
+                <Input
+                    name='confirm-password'
+                    id="LoginForm__confirm-password">
+                </Input>
+            </div>
             <Button type='submit'>
                 Register
             </Button>

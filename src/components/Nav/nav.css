@@ -1,16 +1,3 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: "Open Sans",
-    sans-serif;
-    font-size: 18px;
-    color: #444;
-    text-align: center;
-    line-height: 1.4;
-  }
-
 nav, footer {
   background-color: #aaa;
 }
@@ -35,7 +22,3 @@ nav {
 a {
   text-decoration: none;
 }
-
-  /* .nav-options {  
-  }
-   */

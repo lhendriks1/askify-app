@@ -9,7 +9,7 @@
     display: block;
 }
 
-.QuestionPage__votes-count * {
+.QuestionPage__votes-count *, textarea, label {
     display: block;
 }
 
@@ -38,16 +38,17 @@ button.answer, button.post-question {
     padding: 8px 16px;
 }
 
-textarea, label {
-    display: block;
-}
-
 textarea {
     border: 1px solid #aaa;
     width: 100%;
     border-radius: 4px;
     padding: 4px 8px;
 }
+
+.QuestionPage__answer-info, .QuestionPage__author-date {
+    font-size: 12px;
+}
+
 
 
 
