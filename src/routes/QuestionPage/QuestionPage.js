@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { QAContext } from '../../QaContext'
 import Tags from '../../components/Tags/Tags';
+import Votes from '../../components/Votes/Votes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp, faCaretDown, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import './QuestionPage.css';
@@ -65,36 +66,24 @@ export default function QuestionPage(props) {
 }
 
 function useAnswerItems(answers=[]) {
-     return (
+    return (
         <ul className="QuestionPage__answer-list">
-            {answers.map(ans => {
-                const [votes, setVotes] = useState(Number(ans.votes))
-
-                return (
-                    <li class="QuestionPage__answer-item" key={ans.id}>
-                        <hr />
-                        <section className="answer-container">
-                        <div className="QuestionPage__votes-count">
-                            <span onClick={()=> setVotes(votes+1)}>
-                                <FontAwesomeIcon icon={faCaretUp} size="2x" />
-                            </span>
-                            {votes}
-                            <span onClick={() => setVotes(votes-1)}>
-                                <FontAwesomeIcon icon={faCaretDown} size="2x" />
-                            </span>
+            {answers.map(ans => 
+                <li class="QuestionPage__answer-item" key={ans.id}>
+                    <hr />
+                    <section className="answer-container">
+                        <Votes answer={ans} />
+                    <div className="QuestionPage__answer">
+                        <p className="QuestionPage__answer-text">
+                            {ans.answer}
+                        </p>
+                        <div className="QuestionPage__answer-info">
+                            - {ans.author} {(new Date(ans.date).toLocaleDateString())}
                         </div>
-                        <div className="QuestionPage__answer">
-                            <p className="QuestionPage__answer-text">
-                                {ans.answer}
-                            </p>
-                            <div className="QuestionPage__answer-info">
-                                - {ans.author} {(new Date(ans.date).toLocaleDateString())}
-                            </div>
-                        </div>
-                        </section>
-                    </li>
-                )
-            })}
+                    </div>
+                    </section>
+                </li>
+            )}
         </ul>
     )
 }
