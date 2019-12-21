@@ -1,27 +1,30 @@
-import React, {useContext} from 'react';
-import { QAContext } from '../../QaContext';
-import TokenServices from '../../services/token-service';
+import React, { useState } from 'react'
+import AuthApiService from '../../services/auth-api-service'
 import { Button, Input, Required } from '../Utils/Utils'
 
 export default function RegistrationForm(props) {
-    //TODO: ADD ERROR RESET TO NULL & ERROR HANDLING
-    const {error} = useContext(QAContext)
+    const [error, setError] = useState(null)
     const errorDiv = error ? <div className="error">{error}</div> : '';
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        setError(null)
+        const { full_name, user_name, password } = e.target
 
-
-    const handleSubmit = ev => {
-        ev.preventDefault()
-        const { full_name, user_name, password } = ev.target
-        const token = TokenServices.makeBasicAuthToken(user_name, password)
-        TokenServices.saveAuthToken(token)
-        console.log('registration form submitted')
-        console.log({full_name, user_name, password})
-
-        full_name.value = ''
-        user_name.value = ''
-        password.value = ''
-        props.onRegistrationSuccess()
+        AuthApiService.postUser({
+            full_name: full_name.value, 
+            user_name: user_name.value, 
+            password: password.value
+        })
+            .then(user => {
+                full_name.value = ''
+                user_name.value = ''
+                password.value = ''
+                props.onRegistrationSuccess()
+            })
+            .catch(res => {
+                setError(res.error)
+            })
     }
 
     return(
@@ -69,6 +72,8 @@ export default function RegistrationForm(props) {
                 </label>
                 <Input
                     name='confirm-password'
+                    type="password"
+                    required
                     id="LoginForm__confirm-password">
                 </Input>
             </div>

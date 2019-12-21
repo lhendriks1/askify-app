@@ -1,22 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import questionApiService from '../../services/question-api-service';
 
 
-export default function Votes({answer}) {
-    console.log(answer)
-    const [votes, setVotes] = useState(Number(answer.votes))
-    console.log(votes)
+export default function Votes(props) {
+    const { item, itemType } = props
+    const [votes, setVotes] = useState()
+
+    useEffect(() => {
+        setVotes(item.votes);
+    }, [item.votes])
+
+    useEffect(() => {
+        if (itemType == 'question') {
+                questionApiService.updateQuestionFields({
+                    questionId: item.id, 
+                    questionFields : { votes: votes }
+                })
+            } else if (itemType === 'answer') {
+                questionApiService.updateAnswerFields({
+                     answerId: item.id,
+                     answerFields: { votes: votes }
+                })
+            }
+        }, [votes, itemType])
 
     return (
         <div className="QuestionPage__votes-count">
-            <span onClick={()=> setVotes(votes+1)}>
+            <button 
+                onClick={() => setVotes(prevCount => prevCount + 1)}>
                 <FontAwesomeIcon icon={faCaretUp} size="2x" />
-            </span>
+            </button>
             {votes}
-            <span onClick={() => setVotes(votes-1)}>
+            <button 
+                onClick={() => setVotes(prevCount => prevCount - 1)}>
                 <FontAwesomeIcon icon={faCaretDown} size="2x" />
-            </span>
+            </button>
         </div>
     )
 }

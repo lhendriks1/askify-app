@@ -1,0 +1,46 @@
+.ErrorBoundary__container {
+  display: absolute;
+  background-color: #8A80BB;
+  box-shadow: inset -10px -10px 60px rgb(116, 107, 165); 
+  height: 100vh;
+  text-align: center;
+}
+
+.ErrorBoundary__div {
+  color: black;
+  padding: 30px;
+}
+
+.ErrorBoundary__subtext {
+  display: block;
+  font-size: 16px;
+  padding-bottom: 20px;
+}
+
+.ErrorBoundary__astronaut {
+  width: 67%;
+  max-width: 500px;
+}
+
+.ErrorBoundary_headline {
+  margin: 0px;
+  font-size: 36px;
+  font-weight: bolder;
+}
+
+.ErrorBoundary__home-btn {
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  padding: 6px 12px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.attribution {
+  font-size: 8px;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  color: gray;
+}

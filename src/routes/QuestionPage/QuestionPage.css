@@ -49,6 +49,10 @@ textarea {
     font-size: 12px;
 }
 
+.QuestionPage__question-details {
+    display: flex;
+}
+
 
 
 

@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
-import { Section } from '../../components/Utils/Utils';
-import { QAContext } from '../../QaContext';
-import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import React, { useContext } from 'react'
+import { Section } from '../../components/Utils/Utils'
+import { AuthContext } from '../../contexts/AuthContext'
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm'
 
 export default function RegistrationPage(props) {
 
-    const { setLoginStatus, setRegistrationMsg } = useContext(QAContext)
+    const { updateLoginStatus, updateRegistrationMsg } = useContext(AuthContext)
 
-    //TODO: update registration message logic so it only works on each user
     const handleRegistrationSuccess = user => {
-        setLoginStatus(true);
-        setRegistrationMsg("Successful user registration")
-        setTimeout(() => setRegistrationMsg(''), 10000)
+        updateLoginStatus(true);
+        updateRegistrationMsg("Successful user registration")
+        setTimeout(() => updateRegistrationMsg(''), 10000)
 
         const { history } = props;
         history.push('/dashboard');

@@ -14,3 +14,10 @@ body {
 h1 {
     font-size: 20px;
 }
+
+.error {
+    color: red;
+    background-color: rgb(245, 216, 216);
+    padding: 2px 10px;
+    margin-bottom: 10px;
+}

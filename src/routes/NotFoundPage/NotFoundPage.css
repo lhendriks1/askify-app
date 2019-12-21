@@ -1,0 +1,47 @@
+.NotFoundPage__container {
+    display: absolute;
+    background-color: #F29455;
+    box-shadow: inset -10px -10px 70px rgb(201, 116, 59);
+    height: 100vh;
+    text-align: center;
+}
+
+.NotFoundPage__div {
+    color: black;
+    padding: 30px;
+}
+
+.NotFoundPage__subtext {
+    display: block;
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+
+.NotFoundPage__astronaut {
+    width: 67%;
+    max-width: 500px;
+}
+
+.NotFoundPage_404 {
+    margin: 0px;
+    font-size: 36px;
+    font-weight: bolder;
+}
+
+.NotFoundPage__home-btn {
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    padding: 6px 12px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.attribution {
+    font-size: 8px;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: gray;
+}
+

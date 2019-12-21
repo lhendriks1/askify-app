@@ -1,23 +1,23 @@
-import React, {useContext, useEffect} from 'react';
-import {QAContext} from '../../QaContext'
+import React, {useContext, useEffect} from 'react'
+import { QuestionListContext } from '../../contexts/QuestionListContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import './SearchBox.css';
+import './SearchBox.css'
 
 export default function SearchBox() {
-    const qaContext = useContext(QAContext);
-    const { query, setQuery, filterBySearchTerm } = qaContext;
+    const value = useContext(QuestionListContext);
+    const { query, setQuery, filterBySearchTerm } = value;
 
     const handleChange = e => {
         setQuery(e.target.value)
         filterBySearchTerm(e.target.value)
     }
 
-
     return(
         <div className='search-bar'>
             <div className='search-icon'><FontAwesomeIcon icon={faSearch}/></div>
             <form
+                onSubmit={e => { e.preventDefault(); }}
             >
                 <label htmlFor='search-term'></label>
                 <input 

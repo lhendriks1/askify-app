@@ -20,9 +20,14 @@
     background-color: white;
 }
 
-li.active {
+.active {
     border-bottom: 5px solid orange;
 
+}
+
+button {
+    border: none;
+    background-color: inherit;
 }
 
 .registration-msg {

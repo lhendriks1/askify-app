@@ -1,14 +1,13 @@
 import React, {useContext} from 'react';
-import { QAContext } from '../../QaContext';
-import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext'
 import { Section } from '../../components/Utils/Utils';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
 export default function LoginPage(props) {
 
-    const { loginStatus, setLoginStatus } = useContext(QAContext)
+    const { updateLoginStatus } = useContext(AuthContext)
     const handleLoginSuccess = () => {
-        setLoginStatus(true);
+        updateLoginStatus(true);
         const { history } = props;
         history.push('/dashboard');
     }

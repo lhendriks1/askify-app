@@ -1,17 +1,27 @@
-import React, {useContext, useEffect} from 'react';
-import {QAContext} from '../../QaContext';
-import './QuestionsNavPage.css';
-import QuestionListItem from '../../components/QuestionListItem/QuestionListItem';
-import Headline from '../../components/Headline/headline';
+import React, { useState, useContext, useEffect } from 'react'
+import { QuestionListContext } from '../../contexts/QuestionListContext'
+import QuestionApiService from '../../services/question-api-service'
+import QuestionListItem from '../../components/QuestionListItem/QuestionListItem'
+import Headline from '../../components/Headline/headline'
+import './QuestionsNavPage.css'
 
 function QuestionsNavPage() {
-  const qaContext = useContext(QAContext)
-  const {displayedResults, setQuery, setDisplayedResults, results} = qaContext;
+  const value = useContext(QuestionListContext)
+  const {displayedResults, setQuery, setDisplayedResults, results, setResults, setSearchResults} = value;
+  const [error, setError] = useState(null);
+  const errorDiv = error ? <div className="error">{error}</div> : '';
 
   useEffect(() => {
-    setQuery('');
-    setDisplayedResults(results)
-  }, [])
+    setQuery('')
+
+    QuestionApiService.getQuestions()
+      .then(results => {
+        setResults(results)
+        setSearchResults(results)
+        setDisplayedResults(results)
+      })
+      .catch(error => setError(error))
+    }, [])
 
     const questions = displayedResults.map((q, key) => 
       <QuestionListItem {...q} key={key}/>)
@@ -19,10 +29,11 @@ function QuestionsNavPage() {
     return(
       <>
         <Headline />
-        <section className="section-QAList">
-          {!displayedResults.length && <p>0 unaswered questions</p>}
-          {questions}
-        </section>
+        {errorDiv}
+          <section className="section-QAList">
+            {!displayedResults.length && <p>0 questions</p>}
+            {questions}
+          </section>
       </>
     )
 }

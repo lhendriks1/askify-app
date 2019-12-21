@@ -1,84 +1,93 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { QAContext } from '../../QaContext'
-import Tags from '../../components/Tags/Tags';
-import Votes from '../../components/Votes/Votes';
+import React, { useState, useContext, useEffect } from 'react'
+import { QuestionListContext } from '../../contexts/QuestionListContext'
+import QuestionApiService from '../../services/question-api-service'
+import AnswerForm from '../../components/AnswerForm'
+import Tags from '../../components/Tags/Tags'
+import Votes from '../../components/Votes/Votes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp, faCaretDown, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import './QuestionPage.css';
+import './QuestionPage.css'
 
 //TODO Why does this component seem to mount 2x??
 
 export default function QuestionPage(props) {
     const {questionId} = props.match.params;
-    const {results, setError} = useContext(QAContext)
-    const question = results.filter(q => Number(q.id) === Number(questionId))[0]
-    const answers = useAnswerItems(question.answers);
-    
-    useEffect(() => setError(""), [])
+    const { setError } = useContext(QuestionListContext)
+    const [answers, setAnswers] = useState([])
+    const answerItems = useAnswerItems(answers)
+    const [question, setQuestion] = useState({
+        id: '',
+        question_title: '',
+        date_created: '',
+        number_of_answers: '',
+        votes: '',
+        tags: [],
+        user: []
+    })
+
+    function addNewAnswer(updatedAnswersList) {
+        setAnswers(updatedAnswersList);
+      }
+
+    useEffect(() => {
+        setError(null)
+    }, [])
+
+
+    useEffect(() => {
+        const fetchQuestion = async () => {
+            const currQuestion = await QuestionApiService.getQuestionById(questionId);
+            setQuestion({...currQuestion, tags: currQuestion.tags.split(",")})
+        }
+        fetchQuestion()
+    }, [])
+
+    useEffect(() => {
+        const fetchAnswers = async () => {
+            const answers = await QuestionApiService.getQuestionAnswers(questionId)
+            setAnswers(answers)
+        }
+        fetchAnswers()
+    }, [])
 
     //TODO: ADD error handling
-
-    // function renderQuestion() {
-    //     const {results}
-    // }
-
-    // if (error) {
-    //     content = (error.error === "Question does not exist")
-    //     ? <p className="error">Question not found</p>
-    //     : <p className="error">There was an error</p>
-    // } else if (!results.id) { //is it results.id???
-    //     content = <div className="loading" />
-    // } else {
-    //     content = renderQuestion()
-    // }
-    // return (
-    //     <Section className="QuestionPage">
-    //         {content}
-    //     </Section>
-    // )
-
     return(
         <div className="QuestionPage">
-            <button class="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button>
-            <section className="question">
-                <h1>{question.title}</h1>
-                <p class="QuestionPage__question-details">{question.question}</p>
-                <Tags tags={question.tags} {...props} />
-                <div className='QuestionPage__author-date'>Asked by {question.author} on {new Date(question.date).toLocaleDateString()}</div>
+            <button className="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button>
+            <section className="QuestionPage__question-details">
+                <Votes item={question} voteCount={question.votes} itemType={'question'}/>
+                <div>
+                    <h1>{question.question_title}</h1>
+                    <p className="QuestionPage__question-details">{question.question_body}</p>
+                    <Tags tags={question.tags} {...props} />
+                    <div className='QuestionPage__author-date'>Asked by {question.user.user_name} on {new Date(question.date_created).toLocaleDateString()}</div>
+                </div>
             </section>
             <section className="ul-answers">
-                <h2 class="answer-count">
-                    {question.answers.length} {question.answers.length == 1 ? "Answer" : "Answers"}
+                <h2 className="answer-count">
+                    {answers.length} {answers.length == 1 ? "Answer" : "Answers"}
                 </h2>
-                {answers}
+                {answerItems}
             </section>
-            <section class="answer-form">
-                <hr />
-                <form class="answer-form">
-                    <label htmlFor="answer">Your Answer</label>
-                    <textarea rows="4" id="answer" name="answer"></textarea>
-                    <button className="answer">Post</button>
-                </form>
-            </section>
-
+            <AnswerForm questionId={question.id} answers={answers} addNewAnswer={addNewAnswer}/>
         </div>
     )
 }
 
-function useAnswerItems(answers=[]) {
+function useAnswerItems(answers) {
     return (
         <ul className="QuestionPage__answer-list">
             {answers.map(ans => 
-                <li class="QuestionPage__answer-item" key={ans.id}>
+                <li className="QuestionPage__answer-item" key={ans.id}>
                     <hr />
                     <section className="answer-container">
-                        <Votes answer={ans} />
+                        <Votes item={ans} itemType={'answer'}/>
                     <div className="QuestionPage__answer">
                         <p className="QuestionPage__answer-text">
                             {ans.answer}
                         </p>
                         <div className="QuestionPage__answer-info">
-                            - {ans.author} {(new Date(ans.date).toLocaleDateString())}
+                            - {ans.user.user_name} {(new Date(ans.date_created).toLocaleDateString())}
                         </div>
                     </div>
                     </section>
@@ -87,3 +96,5 @@ function useAnswerItems(answers=[]) {
         </ul>
     )
 }
+
+

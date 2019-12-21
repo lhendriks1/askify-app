@@ -1,14 +1,15 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { QAContext } from '../../QaContext'
+import React, { useState, useContext, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { AuthContext } from '../../contexts/AuthContext'
+import TokenService from '../../services/token-service'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Hyph } from '../Utils/Utils'
-import './nav.css';
-import TokenService from '../../services/token-service';
+import './nav.css'
 
 export default function Nav() {
-    const navOptions= useLoginStatus()
+    const { isLoggedIn, logInRender, logOutRender } = useLoginStatus()
+    const {loginStatus}= useContext(AuthContext)
 
     return (
         <nav className="Nav">
@@ -19,17 +20,17 @@ export default function Nav() {
                 </span>
             </Link>
             <div className="profile-tools">
-                {navOptions}
+                {loginStatus ? logOutRender : logInRender}
             </div>
         </nav>
     )
 }
 
 function useLoginStatus() {
-    const { setLoginStatus } = useContext(QAContext)
+    const { updateLoginStatus } = useContext(AuthContext)
 
     const handleLogoutClick = () => {
-        setLoginStatus(false)
+        updateLoginStatus(false)
         TokenService.clearAuthToken()
     }
 
@@ -55,6 +56,10 @@ function useLoginStatus() {
             </div>
     );
 
-    return TokenService.hasAuthToken() ? renderLogoutLink() : renderLoginLink()
+    return {
+        isLoggedIn: TokenService.hasAuthToken(),
+        logInRender: renderLoginLink(),
+        logOutRender: renderLogoutLink(),
+    }
 }
 
