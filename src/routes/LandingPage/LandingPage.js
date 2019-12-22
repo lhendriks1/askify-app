@@ -1,12 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../../contexts/AuthContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-import './LandingPage.css';
+import TokenService from '../../services/token-service'
+import './LandingPage.css'
 
 export default function LandingPage() {
+    const history = useHistory()
+    const { loginStatus, updateLoginStatus } = useContext(AuthContext)
 
+  function loginAsTestUser(props) {
+        console.log('loginastestuser called')
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJpYXQiOjE1NzY5ODM3MDUsImV4cCI6MTU3Njk5NDUwNSwic3ViIjoidGVzdC11c2VyLWEifQ.KTT57Q5gWPpbdFibzTfM1ybe95cl2ueJCkRxjTYDg7k'
+        TokenService.saveAuthToken(token)
+        updateLoginStatus(true)
+        history.push('/dashboard');
+    }
 
     return (
         <>
@@ -15,7 +27,7 @@ export default function LandingPage() {
                     <h1>Askify</h1>
                     <span className="tagline">Your team's dedicated Q&A platform</span>
                     <p>Askify connects users across team lines to fill information gaps, increase innovation, and stimulate leadership. Tap into the knowledge of experienced employees and start leveraging and growing your organizational knowledge base.</p>
-                    <Link to={'/dashboard'}><button className="live-prev">Live Preview</button></Link>
+                    <button className="live-prev" onClick={() => loginAsTestUser()}>Live Preview</button>
                 </section>
                 <section className="section-two landing-page">
                     <h2>Manage Organizational Knowledge</h2>

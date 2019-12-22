@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import questionApiService from '../../services/question-api-service';
@@ -8,12 +8,12 @@ export default function Votes(props) {
     const { item, itemType } = props
     const [votes, setVotes] = useState()
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setVotes(item.votes);
     }, [item.votes])
 
     useEffect(() => {
-        if (itemType == 'question') {
+        if (itemType === 'question') {
                 questionApiService.updateQuestionFields({
                     questionId: item.id, 
                     questionFields : { votes: votes }
@@ -40,3 +40,5 @@ export default function Votes(props) {
         </div>
     )
 }
+
+

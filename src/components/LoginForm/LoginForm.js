@@ -1,19 +1,14 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext'
+import React, { useState } from 'react';
 import { Button, Input } from '../Utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
-import TokenService from '../../services/token-service';
 
 export default function LoginForm(props) {
-
-    //TODO: move errorDiv to Utils since it is used many times
-    const {error, updateErrorMsg} = useContext(AuthContext);
+    const [error, setError] = useState(null);
     const errorDiv = error ? <div className="error">{error}</div> : '';
-
 
     const handleSubmitJwtAuth = e => {
         e.preventDefault()
-        updateErrorMsg(null)
+        setError(null)
         const { user_name, password } = e.target
 
         AuthApiService.postLogin({
@@ -26,7 +21,7 @@ export default function LoginForm(props) {
             props.onLoginSuccess()
         })
         .catch(res => {
-            updateErrorMsg(res.error)
+            setError(res.error)
         })
     }
 
