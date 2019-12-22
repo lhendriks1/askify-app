@@ -44,6 +44,26 @@ const AuthApiService = {
                     return res
                 })
     },
+    postGuestLogin() {
+        return fetch(`${config.API_ENDPOINT}/auth/guest-login`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))     
+                    : res.json()       
+            )
+            .then(res => {
+                TokenService.saveAuthToken(res.authToken)
+                TokenService.queueCallbackBeforeExpiry(() => {
+                    AuthApiService.postRefreshToken()
+                })
+                return res
+            })
+    },
     postRefreshToken() {
         return fetch(`${config.API_ENDPOINT}/auth/refresh`, {
             method: 'POST',

@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
+import AuthApiService from '../../services/auth-api-service'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
@@ -11,13 +12,20 @@ import './LandingPage.css'
 export default function LandingPage() {
     const history = useHistory()
     const { loginStatus, updateLoginStatus } = useContext(AuthContext)
+    const [error, setError] = useState(null)
 
-  function loginAsTestUser(props) {
-        console.log('loginastestuser called')
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJpYXQiOjE1NzY5ODM3MDUsImV4cCI6MTU3Njk5NDUwNSwic3ViIjoidGVzdC11c2VyLWEifQ.KTT57Q5gWPpbdFibzTfM1ybe95cl2ueJCkRxjTYDg7k'
-        TokenService.saveAuthToken(token)
+  function loginAsTestUser() {
+      console.log('login as guest clicked')
+    setError(null)
+    AuthApiService.postGuestLogin()
+     .then(res => {
         updateLoginStatus(true)
-        history.push('/dashboard');
+        console.log('before history')
+        history.push('/dashboard')
+    })
+     .catch(res => {
+         setError(res.error)
+     })
     }
 
     return (
@@ -27,7 +35,7 @@ export default function LandingPage() {
                     <h1>Askify</h1>
                     <span className="tagline">Your team's dedicated Q&A platform</span>
                     <p>Askify connects users across team lines to fill information gaps, increase innovation, and stimulate leadership. Tap into the knowledge of experienced employees and start leveraging and growing your organizational knowledge base.</p>
-                    <button className="live-prev" onClick={() => loginAsTestUser()}>Live Preview</button>
+                    <button className="live-prev" onClick={() => loginAsTestUser()}>Preview as Guest</button>
                 </section>
                 <section className="section-two landing-page">
                     <h2>Manage Organizational Knowledge</h2>
