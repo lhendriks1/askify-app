@@ -4,8 +4,6 @@ import QuestionApiService from '../../services/question-api-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import './QuestionForm.css';
-import { taggedTemplateExpression } from '@babel/types';
-import { transformFile } from '@babel/core';
 
 export default function QuestionForm(props){
     const { results, addNewQuestion } = useContext(QuestionListContext);

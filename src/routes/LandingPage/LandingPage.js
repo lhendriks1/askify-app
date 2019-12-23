@@ -1,26 +1,24 @@
 import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 import AuthApiService from '../../services/auth-api-service'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-import TokenService from '../../services/token-service'
 import './LandingPage.css'
 
 export default function LandingPage() {
     const history = useHistory()
-    const { loginStatus, updateLoginStatus } = useContext(AuthContext)
+    const { updateLoginStatus } = useContext(AuthContext)
     const [error, setError] = useState(null)
 
+   const errorDiv = error ? <div>'Guest account is not currently available. You can still access the app by registering and logging in.</div> : ""
+
   function loginAsTestUser() {
-      console.log('login as guest clicked')
     setError(null)
     AuthApiService.postGuestLogin()
      .then(res => {
         updateLoginStatus(true)
-        console.log('before history')
         history.push('/dashboard')
     })
      .catch(res => {
@@ -36,6 +34,7 @@ export default function LandingPage() {
                     <span className="tagline">Your team's dedicated Q&A platform</span>
                     <p>Askify connects users across team lines to fill information gaps, increase innovation, and stimulate leadership. Tap into the knowledge of experienced employees and start leveraging and growing your organizational knowledge base.</p>
                     <button className="live-prev" onClick={() => loginAsTestUser()}>Preview as Guest</button>
+                    {errorDiv}
                 </section>
                 <section className="section-two landing-page">
                     <h2>Manage Organizational Knowledge</h2>

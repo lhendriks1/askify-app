@@ -5,10 +5,8 @@ import AnswerForm from '../../components/AnswerForm'
 import Tags from '../../components/Tags/Tags'
 import Votes from '../../components/Votes/Votes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretUp, faCaretDown, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import './QuestionPage.css'
-
-//TODO Why does this component seem to mount 2x??
 
 export default function QuestionPage(props) {
     const {questionId} = props.match.params;
@@ -45,6 +43,7 @@ export default function QuestionPage(props) {
     useEffect(() => {
         const fetchAnswers = async () => {
             const answers = await QuestionApiService.getQuestionAnswers(questionId)
+            answers.sort((a, b) => b.votes - a.votes)
             setAnswers(answers)
         }
         fetchAnswers()
@@ -65,7 +64,7 @@ export default function QuestionPage(props) {
             </section>
             <section className="ul-answers">
                 <h2 className="answer-count">
-                    {answers.length} {answers.length == 1 ? "Answer" : "Answers"}
+                    {answers.length} {answers.length === 1 ? "Answer" : "Answers"}
                 </h2>
                 {answerItems}
             </section>

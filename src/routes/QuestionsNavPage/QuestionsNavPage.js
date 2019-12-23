@@ -7,7 +7,7 @@ import './QuestionsNavPage.css'
 
 function QuestionsNavPage() {
   const value = useContext(QuestionListContext)
-  const {displayedResults, setQuery, setDisplayedResults, results, setResults, setSearchResults} = value;
+  const {displayedResults, setQuery, setDisplayedResults, setResults, setSearchResults} = value;
   const [error, setError] = useState(null);
   const errorDiv = error ? <div className="error">{error}</div> : '';
 

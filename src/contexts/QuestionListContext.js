@@ -1,12 +1,8 @@
 import React, {useState} from 'react'
-// import helpers from '../helpers'
 
 export const QuestionListContext = React.createContext({})
 
 export const QuestionListContextProvider = props => {
-    //Initial values will be obtained from props
-    const {children} = props
-
     //Use state to keep the values
     const [error, setError] = useState(null)
     const [results, setResults] = useState([])

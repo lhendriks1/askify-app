@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 import TokenService from '../../services/token-service'
@@ -8,7 +8,7 @@ import { Hyph } from '../Utils/Utils'
 import './nav.css'
 
 export default function Nav() {
-    const { isLoggedIn, logInRender, logOutRender } = useLoginStatus()
+    const { logInRender, logOutRender } = useLoginStatus()
     const {loginStatus}= useContext(AuthContext)
 
     return (

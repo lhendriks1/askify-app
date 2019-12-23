@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import { QuestionListContext } from '../../contexts/QuestionListContext'
 import SearchBox from '../SearchBox/SearchBox'

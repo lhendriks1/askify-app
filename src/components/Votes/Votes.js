@@ -24,7 +24,7 @@ export default function Votes(props) {
                      answerFields: { votes: votes }
                 })
             }
-        }, [votes, itemType])
+        }, [votes, item.id, itemType])
 
     return (
         <div className="QuestionPage__votes-count">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AuthApiService from '../../services/auth-api-service'
-import { Button, Input, Required } from '../Utils/Utils'
+import { Button, Input } from '../Utils/Utils'
 
 export default function RegistrationForm(props) {
     const [error, setError] = useState(null)
