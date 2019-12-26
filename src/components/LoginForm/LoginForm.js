@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Input } from '../Utils/Utils';
+import { Input } from '../Utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
+import { Button } from '@material-ui/core';
 
 export default function LoginForm(props) {
     const [error, setError] = useState(null);
-    const errorDiv = error ? <div className="error">{error}</div> : '';
+    const errorDiv = error 
+        ? <div className="error">
+            <i class="material-icons">error_outline</i>
+            {error}
+          </div> 
+        : '';
 
     const handleSubmitJwtAuth = e => {
         e.preventDefault()
@@ -30,7 +36,6 @@ export default function LoginForm(props) {
             className='LoginForm'
             onSubmit={handleSubmitJwtAuth}
         >
-            {errorDiv}
             <div className='user_name'>
                 <label htmlFor='LoginForm__user_name'>
                     User name
@@ -52,7 +57,8 @@ export default function LoginForm(props) {
                 >
                 </Input>
             </div>
-            <Button type='submit'>
+            {errorDiv}
+            <Button type='submit' variant='contained' color='default'>
                 Login
             </Button>
         </form>

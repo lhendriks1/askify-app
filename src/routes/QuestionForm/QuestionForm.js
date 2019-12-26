@@ -1,6 +1,9 @@
 import React, {useState, useContext} from 'react';
 import {QuestionListContext} from '../../contexts/QuestionListContext';
+import { Link } from 'react-router-dom'
 import QuestionApiService from '../../services/question-api-service';
+import { Input, Textarea } from '../../components/Utils/Utils'
+import { Button } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import './QuestionForm.css';
@@ -36,8 +39,10 @@ export default function QuestionForm(props){
 
     return(
         <section className="question-form">
-            <button className="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button>
-
+            <Link to='/dashboard' className='back'>
+                <i class="material-icons back-arrow">arrow_back_ios</i>
+                Back
+            </Link>
             <form
                 onSubmit={handleSubmit}
             >
@@ -45,14 +50,15 @@ export default function QuestionForm(props){
                 {errorDiv}
                 <fieldset>
                     <label htmlFor="question_title">Title (required)</label>
-                    <input type="text" id="question_title" name="question_title" aria-label="title for question" aria-required="true"></input>
+                    <Input type="text" id="question_title" name="question_title" aria-label="title for question" aria-required="true"></Input>
+                    <label htmlFor="question_body">Body (required)</label>
+                    <Textarea id="question_body" rows="8" name="question_body" aria-required="true" aria-label="body for question"></Textarea>
                     <label htmlFor="tags">Tags (optional)</label>
                     <div id="tagConstraint">Add up to 5 tags separated by a comma, e.g.: Salesforce, IT, Cases</div>
-                    <input type="text" id="tags" name="tags" aria-label="tags for question" aria-required="false" aria-describedby="tagConstraint"></input>
-                    <label htmlFor="question_body">Body (required)</label>
-                    <textarea id="question_body" rows="8" name="question_body" aria-required="true" aria-label="body for question"></textarea>
-    
-                    <button type="submit" className="post-question">Post</button>
+                    <Input type="text" id="tags" name="tags" aria-label="tags for question" aria-required="false" aria-describedby="tagConstraint"></Input>
+                    <Button type='submit' variant='contained' color='primary'>
+                        Post
+                    </Button>
                 </fieldset>
             </form>
         </section>

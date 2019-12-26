@@ -3,21 +3,15 @@
     padding: 0px;
 }
 
-.btn-ask-question {
-    background-color: #1171ba;
-    font-size: 18px;
-    font-weight: 500;
-    color: white;
-    border-radius: 4px;
-    margin: 40px 0px 16px;
-    padding: 8px 16px;
-}
-
 .tabs ul {
     display: flex;
     margin-bottom: 16px;
     border: 1px solid #ddd;
     background-color: white;
+}
+
+li .tab {
+    font-size: 1em;
 }
 
 .active {
@@ -53,4 +47,8 @@ button {
         margin-left: 100%;
         width: 300%;
     }
+}
+
+a {
+    text-decoration: none;
 }

@@ -1,8 +1,8 @@
 input#search-term {
-    font-size: 100%;
-    width: 95%;
-    padding-left: 30px;
-    text-indent: 16px;
+    font-size: 1.1em;
+    margin-right: auto;
+    margin-left: auto;
+    text-indent: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 8px 16px;
@@ -15,12 +15,14 @@ form {
 
 .search-bar {
     display: flex;
-    margin: 8px;
+    position: relative;
+    margin: 24px 8px 12px;
 }
 
 .search-icon {
+    position: absolute;
     display: inline-block;
-    position: relative;
-    left: 25px;
-    top: 8px;
+    left: 6px;
+    top: 4px;
+    margin: 4px 6px 0px 0px;
 }

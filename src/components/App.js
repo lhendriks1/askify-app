@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { QuestionListContextProvider } from '../contexts/QuestionListContext'
+import { VoteHistoryContextProvider } from '../contexts/VoteHistoryContext'
 import { AuthContextProvider } from '../contexts/AuthContext'
+import AuthApiService from '../services/auth-api-service'
+import TokenService from '../services/token-service'
+import IdleService from '../services/idle-service'
 import LandingPage from '../routes/LandingPage/LandingPage'
 import RegistrationPage from '../routes/RegistrationPage/RegistrationPage'
 import LoginPage from '../routes/LoginPage/LoginPage'
@@ -14,9 +18,10 @@ import PublicOnlyRoute from '../components/Utils/PublicOnlyRoute'
 import NotFoundPage from '../routes/NotFoundPage/NotFoundPage'
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 import './App.css'
-
+//TODO: credit logo artist Image by <a href="https://pixabay.com/users/pholdrep-5575235/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3935655">Pedro Araújo</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3935655">Pixabay</a>
 
 function App() {
+  const [ignored, forceUpdate] = useReducer(x => x+1, 0);
   const [error, setError] = useState(null)
   const errorDiv = error ? <div className="error">{error}</div> : '';
 
@@ -24,7 +29,29 @@ function App() {
     setError(null)
   }, []);
 
-  //TODO: Add route for 404
+  useEffect(() => {
+    IdleService.setIdleCallback(logoutFromIdle)
+
+    if (TokenService.hasAuthToken()) {
+      IdleService.registerIdleTimerResets()
+      TokenService.queueCallbackBeforeExpiry(() => {
+        AuthApiService.postRefreshToken()
+      })
+    }
+
+    return () => {
+      IdleService.unRegisterIdleResets()
+      TokenService.clearCallbackBeforeExpiry()
+    }
+  }, [])
+
+  const logoutFromIdle = () => {
+    TokenService.clearAuthToken()
+    TokenService.clearCallbackBeforeExpiry()
+    IdleService.unRegisterIdleResets()
+    forceUpdate()
+  }
+
   return (
     <AuthContextProvider>
       <QuestionListContextProvider>
@@ -62,17 +89,19 @@ function App() {
                 <PrivateRoute
                     path={'/dashboard'} 
                       component={props => 
-                        <ErrorBoundary >
-                          <QuestionsNavPage {...props}/>
-                        </ErrorBoundary>
+                          <ErrorBoundary >
+                            <QuestionsNavPage {...props}/>
+                          </ErrorBoundary>
                       }
                   />
                 <PrivateRoute 
                   path={'/question/:questionId'} 
                   component={props => 
-                    <ErrorBoundary>
-                       <QuestionPage {...props} />
-                    </ErrorBoundary>
+                    <VoteHistoryContextProvider>
+                      <ErrorBoundary>
+                        <QuestionPage {...props} />
+                      </ErrorBoundary>
+                    </VoteHistoryContextProvider>
                   }
                 />
                 <PrivateRoute 

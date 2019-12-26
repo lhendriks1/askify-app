@@ -11,13 +11,11 @@ export const QuestionListContextProvider = props => {
     const [query, setQuery] = useState('')
     const [view, setView] = useState("newest")
 
-    // const {filterBySearchTerm, filterBySelectedView, updateView} = helpers
-
     function addNewQuestion(updatedQuestionsList) {
         setResults(updatedQuestionsList);
       }
 
-function filterBySearchTerm(searchTerm) {
+    function filterBySearchTerm(searchTerm) {
         const regexSearchTerm = new RegExp(searchTerm, "gi")
         const newSearchResults = results.filter(q => regexSearchTerm.test(q.tags) || regexSearchTerm.test(q.question_title) || regexSearchTerm.test(q.question_body) || regexSearchTerm.test(q.user.user_name));
         setSearchResults(newSearchResults)
@@ -92,11 +90,10 @@ function updateView(results) {
     }
 
     return(
-        <QuestionListContext.Provider
-            value={value}>
+        <QuestionListContext.Provider value={value}>
                 {props.children}
         </QuestionListContext.Provider>
     )
 }
 
-export const {QuestionListConsumer} = QuestionListContext;
+export const { QuestionListConsumer } = QuestionListContext;

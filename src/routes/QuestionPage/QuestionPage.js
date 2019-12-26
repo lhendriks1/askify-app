@@ -1,16 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { QuestionListContext } from '../../contexts/QuestionListContext'
+import { VoteHistoryContext } from '../../contexts/VoteHistoryContext'
 import QuestionApiService from '../../services/question-api-service'
 import AnswerForm from '../../components/AnswerForm'
 import Tags from '../../components/Tags/Tags'
 import Votes from '../../components/Votes/Votes'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import './QuestionPage.css'
 
 export default function QuestionPage(props) {
     const {questionId} = props.match.params;
     const { setError } = useContext(QuestionListContext)
+    const { userVoteHistory, updateVote } = useContext(VoteHistoryContext)
     const [answers, setAnswers] = useState([])
     const answerItems = useAnswerItems(answers)
     const [question, setQuestion] = useState({
@@ -20,7 +21,8 @@ export default function QuestionPage(props) {
         number_of_answers: '',
         votes: '',
         tags: [],
-        user: []
+        user: [],
+        userVote: 0,
     })
 
     function addNewAnswer(updatedAnswersList) {
@@ -31,11 +33,24 @@ export default function QuestionPage(props) {
         setError(null)
     }, [])
 
+    const userVote = {
+        q1: -1,
+        q2: 1,
+        q3: -1,
+        a1: 1,
+        a2: 1,
+        a3: -1,
+        a4: 1,
+        a11: -1,
+        a10: 1  
+    }
 
     useEffect(() => {
         const fetchQuestion = async () => {
             const currQuestion = await QuestionApiService.getQuestionById(questionId);
-            setQuestion({...currQuestion, tags: currQuestion.tags.split(",")})
+            const vote = userVote[`q${questionId}`] || 0
+            setQuestion({...currQuestion, tags: currQuestion.tags.split(","), userVote: vote})
+
         }
         fetchQuestion()
     }, [])
@@ -43,16 +58,23 @@ export default function QuestionPage(props) {
     useEffect(() => {
         const fetchAnswers = async () => {
             const answers = await QuestionApiService.getQuestionAnswers(questionId)
+            answers.forEach(ans => {
+                const vote = userVote[`a${ans.id}`] || 0
+                    ans.userVote = vote
+            })
             answers.sort((a, b) => b.votes - a.votes)
             setAnswers(answers)
         }
         fetchAnswers()
     }, [])
 
-    //TODO: ADD error handling
     return(
         <div className="QuestionPage">
-            <button className="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button>
+            {/* <button className="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button> */}
+            <Link to='/dashboard' className='back'>
+                <i className="material-icons back-arrow">arrow_back_ios</i>
+                Back
+            </Link>
             <section className="QuestionPage__question-details">
                 <Votes item={question} voteCount={question.votes} itemType={'question'}/>
                 <div>
