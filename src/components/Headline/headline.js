@@ -1,25 +1,28 @@
 import React, { useContext, useEffect } from 'react'
 import {Link} from 'react-router-dom'
+import { AuthContext } from '../../contexts/AuthContext'
 import { QuestionListContext } from '../../contexts/QuestionListContext'
 import SearchBox from '../SearchBox/SearchBox'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCheck } from '@fortawesome/free-solid-svg-icons'
 import './headline.css'
+import Button from '@material-ui/core/Button';
+
+import CustomizedSnackBars from '../../components/SnackBar'
 
 export default function Headline() {
-    const { registrationMsg } = useContext(QuestionListContext)
+    const { registrationMsg } = useContext(AuthContext)
     const filterList = useFilterItems(["newest", "popular", "unanswered", "all"]);
-    const msgDiv = registrationMsg 
-        ? <div className="registration-msg"><FontAwesomeIcon icon={faUserCheck} /> {registrationMsg}</div> 
-        : '';
 
     return (
         <section className="Headline">
-            {msgDiv}
+            {registrationMsg 
+                ?  <CustomizedSnackBars message={registrationMsg} type={'success'}/>
+                : null
+            }
             <div>
-                {/* <span className="q-count">145 Questions</span> */}
+                {/* //<span className="q-count">145 Questions</span> */}
                 <Link to="/new-question">
-                    <button className="btn-ask-question">Ask Question</button>
+                    <Button variant='contained' color='primary'>Ask Question</Button>
                 </Link>
             </div>
         <SearchBox />

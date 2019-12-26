@@ -11,8 +11,6 @@ export const QuestionListContextProvider = props => {
     const [query, setQuery] = useState('');
     const [view, setView] = useState("newest");
 
-    // const {filterBySearchTerm, filterBySelectedView, updateView} = helpers
-
     function addNewQuestion(updatedQuestionsList) {
         setResults(updatedQuestionsList);
       }
@@ -92,11 +90,10 @@ function updateView(results) {
     }
 
     return(
-        <QuestionListContext.Provider
-            value={value}>
+        <QuestionListContext.Provider value={value}>
                 {props.children}
         </QuestionListContext.Provider>
     )
 }
 
-export const {QuestionListConsumer} = QuestionListContext;
+export const { QuestionListConsumer } = QuestionListContext;

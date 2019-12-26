@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QuestionApiService from '../../services/question-api-service';
-
+import { Textarea } from '../../components/Utils/Utils';
+import { Button } from '@material-ui/core';
 
 export default function AnswerForm(props) {
     const [error, setError] = useState(null);
@@ -32,8 +33,8 @@ export default function AnswerForm(props) {
                 className="answer-form">
                 {errorDiv}
                 <label htmlFor="newAnswer">Your Answer</label>
-                <textarea rows="4" id="newAnswer" name="newAnswer"></textarea>
-                <button type="submit" className="answer">Post</button>
+                <Textarea rows="4" id="newAnswer" name="newAnswer"></Textarea>
+                <Button type="submit" variant='contained' color='primary'>Post</Button>
             </form>
         </section>
     )

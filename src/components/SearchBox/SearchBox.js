@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { QuestionListContext } from '../../contexts/QuestionListContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './SearchBox.css';
 
 export default function SearchBox() {
@@ -15,7 +13,7 @@ export default function SearchBox() {
 
     return(
         <div className='search-bar'>
-            <div className='search-icon'><FontAwesomeIcon icon={faSearch}/></div>
+            <i class="material-icons search-icon">search</i>
             <form
                 onSubmit={e => { e.preventDefault(); }}
             >
@@ -23,7 +21,7 @@ export default function SearchBox() {
                 <input 
                     id='search-term'
                     onChange={handleChange}
-                    placeholder='Search term'
+                    placeholder='Search...'
                     value={query}
                     type='text' 
                     name='search-term'

@@ -17,11 +17,16 @@ input, textarea {
     padding: 4px 8px;
 }
 
+textarea:last-of-type {
+    margin-bottom: 14px;
+}
+
 .question-form {
     padding: 0px 10px 10px 10px;
     text-align: left;
 }
 
 #tagConstraint {
-    font-size: 12px;
+    font-size: .9em;
+    margin-bottom: 2px;
 }

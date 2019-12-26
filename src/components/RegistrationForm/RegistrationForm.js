@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import AuthApiService from '../../services/auth-api-service';
-import { Button, Input } from '../Utils/Utils';
+import { Input } from '../Utils/Utils';
+import { Button } from '@material-ui/core';
+import './RegistrationForm.css';
 
 export default function RegistrationForm(props) {
-    const [error, setError] = useState(null);
-    const errorDiv = error ? <div className="error">{error}</div> : '';
+    const [error, setError] = useState(null)
+    const errorDiv = error 
+        ? <div className="error">
+            <i class="material-icons error-icon">error_outline</i>
+            {error}
+          </div> 
+        : '';
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -30,8 +37,7 @@ export default function RegistrationForm(props) {
     return(
         <form className='RegistrationForm'
             onSubmit={handleSubmit}
-        >
-            {errorDiv}
+        >  
             <div className='full_name'>
                 <label htmlFor='RegistrationForm__full_name'>
                     Full name
@@ -77,7 +83,8 @@ export default function RegistrationForm(props) {
                     id="LoginForm__confirm-password">
                 </Input>
             </div>
-            <Button type='submit'>
+            {errorDiv}
+            <Button type='submit' variant='contained' color='default'>
                 Register
             </Button>
         </form>
