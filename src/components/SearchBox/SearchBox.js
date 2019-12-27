@@ -13,7 +13,7 @@ export default function SearchBox() {
 
     return(
         <div className='search-bar'>
-            <i class="material-icons search-icon">search</i>
+            <i className="material-icons search-icon">search</i>
             <form
                 onSubmit={e => { e.preventDefault(); }}
             >

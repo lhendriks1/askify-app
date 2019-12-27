@@ -11,7 +11,8 @@ import './QuestionPage.css';
 export default function QuestionPage(props) {
     const {questionId} = props.match.params;
     const { setError } = useContext(QuestionListContext)
-    const { userVoteHistory, updateVote } = useContext(VoteHistoryContext)
+    const [userVoteHistory, setUserVoteHistory] = useState()
+    // const { userVoteHistory, updateVote } = useContext(VoteHistoryContext)
     const [answers, setAnswers] = useState([])
     const answerItems = useAnswerItems(answers)
     const [question, setQuestion] = useState({
@@ -44,6 +45,7 @@ export default function QuestionPage(props) {
         a11: -1,
         a10: 1  
     }
+    
 
     useLayoutEffect(() => {
         const fetchQuestion = async () => {
