@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import RegistrationPage from './RegistrationPage';
+import NotFoundPage from './NotFoundPage';
 
-describe('RegistrationPage component', () => { 
+describe('NotFoundPage component', () => { 
     // Smoke test
     it('renders without crashing', () => {
        const div =  document.createElement('div');
        ReactDOM.render(
            <BrowserRouter>
-               <RegistrationPage />
+               <NotFoundPage />
            </BrowserRouter>, 
            div)
        ReactDOM.unmountComponentAtNode(div)

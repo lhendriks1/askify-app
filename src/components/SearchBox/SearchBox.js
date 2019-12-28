@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
-import { QuestionListContext } from '../../contexts/QuestionListContext'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import './SearchBox.css'
+import React, { useContext } from 'react';
+import { QuestionListContext } from '../../contexts/QuestionListContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './SearchBox.css';
 
 export default function SearchBox() {
     const value = useContext(QuestionListContext);
     const { query, setQuery, filterBySearchTerm } = value;
 
     const handleChange = e => {
-        setQuery(e.target.value)
-        filterBySearchTerm(e.target.value)
-    }
+        setQuery(e.target.value);
+        filterBySearchTerm(e.target.value);
+    };
 
     return(
         <div className='search-bar'>

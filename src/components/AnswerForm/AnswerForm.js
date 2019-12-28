@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import QuestionApiService from '../services/question-api-service';
+import QuestionApiService from '../../services/question-api-service';
 
 
 export default function AnswerForm(props) {
@@ -7,15 +7,15 @@ export default function AnswerForm(props) {
     const errorDiv = error ? <div className="error">{error}</div> : '';
 
     const handleSubmit = async e => {
-        e.preventDefault()
-        setError(null)
-        const { newAnswer } = e.target
+        e.preventDefault();
+        setError(null);
+        const { newAnswer } = e.target;
         const answerResponse = await QuestionApiService.postAnswer({
             question_id: props.questionId, 
             answer: newAnswer.value
-        })
-        newAnswer.value = ''
-        props.addNewAnswer([...props.answers, answerResponse])
+        });
+        newAnswer.value = '';
+        props.addNewAnswer([...props.answers, answerResponse]);
 
     }
 

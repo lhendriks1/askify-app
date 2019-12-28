@@ -1,5 +1,5 @@
-import config from '../config'
-import TokenService from './token-service'
+import config from '../config';
+import TokenService from './token-service';
 
 const questionApiService = {
     getQuestions() {
@@ -89,4 +89,4 @@ const questionApiService = {
         })
     }
 }
-export default questionApiService
+export default questionApiService;

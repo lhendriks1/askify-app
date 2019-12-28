@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import AuthApiService from '../../services/auth-api-service'
-import { Button, Input } from '../Utils/Utils'
+import React, { useState } from 'react';
+import AuthApiService from '../../services/auth-api-service';
+import { Button, Input } from '../Utils/Utils';
 
 export default function RegistrationForm(props) {
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
     const errorDiv = error ? <div className="error">{error}</div> : '';
 
     const handleSubmit = e => {
-        e.preventDefault()
-        setError(null)
-        const { full_name, user_name, password } = e.target
+        e.preventDefault();
+        setError(null);
+        const { full_name, user_name, password } = e.target;
 
         AuthApiService.postUser({
             full_name: full_name.value, 
@@ -17,15 +17,15 @@ export default function RegistrationForm(props) {
             password: password.value
         })
             .then(user => {
-                full_name.value = ''
-                user_name.value = ''
-                password.value = ''
-                props.onRegistrationSuccess()
+                full_name.value = '';
+                user_name.value = '';
+                password.value = '';
+                props.onRegistrationSuccess();
             })
             .catch(res => {
-                setError(res.error)
+                setError(res.error);
             })
-    }
+    };
 
     return(
         <form className='RegistrationForm'

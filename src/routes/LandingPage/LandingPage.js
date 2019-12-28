@@ -1,28 +1,28 @@
-import React, { useState, useContext } from 'react'
-import { useHistory } from 'react-router-dom'
-import { AuthContext } from '../../contexts/AuthContext'
-import AuthApiService from '../../services/auth-api-service'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-import './LandingPage.css'
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import AuthApiService from '../../services/auth-api-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import './LandingPage.css';
 
 export default function LandingPage() {
-    const history = useHistory()
-    const { updateLoginStatus } = useContext(AuthContext)
-    const [error, setError] = useState(null)
+    const history = useHistory();
+    const { updateLoginStatus } = useContext(AuthContext);
+    const [error, setError] = useState(null);
 
    const errorDiv = error ? <div>'Guest account is not currently available. You can still access the app by registering and logging in.</div> : ""
 
   function loginAsTestUser() {
-    setError(null)
+    setError(null);
     AuthApiService.postGuestLogin()
      .then(res => {
-        updateLoginStatus(true)
-        history.push('/dashboard')
+        updateLoginStatus(true);
+        history.push('/dashboard');
     })
      .catch(res => {
-         setError(res.error)
+         setError(res.error);
      })
     }
 

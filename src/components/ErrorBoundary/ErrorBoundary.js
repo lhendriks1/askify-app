@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import TokenService from '../../services/token-service'
-import { AuthContext } from '../../contexts/AuthContext'
-import astronaut_w_planet from '../../resources/astronaut_w_planet.jpg'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import TokenService from '../../services/token-service';
+import { AuthContext } from '../../contexts/AuthContext';
+import astronaut_w_planet from '../../resources/astronaut_w_planet.jpg';
 import './ErrorBoundary.css';
 
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
-  }
+  };
 
   static getDerivedStateFromError(error) {
     return { hasError: true };
@@ -21,7 +21,7 @@ class ErrorBoundary extends Component {
     TokenService.clearAuthToken();
     this.context.updateLoginStatus(false);
     this.props.history.push('/');
-  }
+  };
 
   render() {
     if (this.state.hasError) {
@@ -41,4 +41,4 @@ class ErrorBoundary extends Component {
   };
 }
 
-export default withRouter(ErrorBoundary)
+export default withRouter(ErrorBoundary);

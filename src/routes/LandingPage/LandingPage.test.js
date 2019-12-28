@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import LandingPage from './LandingPage';
-import renderer from 'react-test-renderer';
 
 describe('LandingPage component', () => { 
     // Smoke test

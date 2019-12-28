@@ -1,18 +1,18 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { QuestionListContext } from '../../contexts/QuestionListContext'
-import QuestionApiService from '../../services/question-api-service'
-import QuestionListItem from '../../components/QuestionListItem/QuestionListItem'
-import Headline from '../../components/Headline/headline'
-import './QuestionsNavPage.css'
+import React, { useState, useContext, useEffect } from 'react';
+import { QuestionListContext } from '../../contexts/QuestionListContext';
+import QuestionApiService from '../../services/question-api-service';
+import QuestionListItem from '../../components/QuestionListItem/QuestionListItem';
+import Headline from '../../components/Headline/headline';
+import './QuestionsNavPage.css';
 
-function QuestionsNavPage() {
+export default function QuestionsNavPage() {
   const value = useContext(QuestionListContext)
   const {displayedResults, setQuery, setDisplayedResults, setResults, setSearchResults} = value;
   const [error, setError] = useState(null);
   const errorDiv = error ? <div className="error">{error}</div> : '';
 
   useEffect(() => {
-    setQuery('')
+    setQuery('');
 
     QuestionApiService.getQuestions()
       .then(results => {
@@ -24,7 +24,7 @@ function QuestionsNavPage() {
     }, [])
 
     const questions = displayedResults.map((q, key) => 
-      <QuestionListItem {...q} key={key}/>)
+      <QuestionListItem {...q} key={key}/>);
 
     return(
       <>
@@ -35,7 +35,5 @@ function QuestionsNavPage() {
             {questions}
           </section>
       </>
-    )
+    );
 }
-
-export default QuestionsNavPage;

@@ -37,9 +37,9 @@ function useFilterItems(items) {
     useEffect(() => filterBySelectedView(), [view]);
 
     const handleClick = e => {
-        setView(e.target.id)
-        filterBySelectedView()
-    }
+        setView(e.target.id);
+        filterBySelectedView();
+    };
 
     const filterList =
         items.map((item, idx) => {

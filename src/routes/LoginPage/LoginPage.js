@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { AuthContext } from '../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext';
 import { Section } from '../../components/Utils/Utils';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
@@ -17,6 +17,6 @@ export default function LoginPage(props) {
             <h2>Login</h2>
             <LoginForm onLoginSuccess={handleLoginSuccess} />
         </Section>
-    )
+    );
 
 }

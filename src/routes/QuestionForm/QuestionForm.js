@@ -1,8 +1,8 @@
 import React, {useState, useContext} from 'react';
 import {QuestionListContext} from '../../contexts/QuestionListContext';
 import QuestionApiService from '../../services/question-api-service';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import './QuestionForm.css';
 
 export default function QuestionForm(props){
@@ -11,23 +11,20 @@ export default function QuestionForm(props){
     const errorDiv = error ? <div className="error">{error}</div> : '';
 
     const handleSubmit = async e => {
-        e.preventDefault()
-        setError(null)
+        e.preventDefault();
+        setError(null);
         const { question_title, question_body, tags } = e.target
         const tagsFormatted = tags.value.split(", ").map(tag => tag.trim())
         const questionResponse = await QuestionApiService.postQuestion({
             title: question_title.value, 
             body: question_body.value,
             tags: [tagsFormatted]
-        })
-        question_title.value = ''
-        question_body.value=''
-        tags.value=[]
-
-        const { history } = props;
-        history.push(`/question/${questionResponse.id}`);
-
-        addNewQuestion([...results, questionResponse])
+        });
+        question_title.value = '';
+        question_body.value='';
+        tags.value=[];
+        props.history.push(`/question/${questionResponse.id}`);
+        addNewQuestion([...results, questionResponse]);
 
     }
 
@@ -37,7 +34,6 @@ export default function QuestionForm(props){
     return(
         <section className="question-form">
             <button className="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button>
-
             <form
                 onSubmit={handleSubmit}
             >
@@ -56,5 +52,5 @@ export default function QuestionForm(props){
                 </fieldset>
             </form>
         </section>
-    )
+    );
 }

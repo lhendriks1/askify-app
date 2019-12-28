@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import LoginPage from './LoginPage';
-import renderer from 'react-test-renderer';
 
 describe('LoginPage component', () => { 
     // Smoke test

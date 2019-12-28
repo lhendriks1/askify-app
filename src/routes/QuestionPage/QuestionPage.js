@@ -1,18 +1,18 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { QuestionListContext } from '../../contexts/QuestionListContext'
-import QuestionApiService from '../../services/question-api-service'
-import AnswerForm from '../../components/AnswerForm'
-import Tags from '../../components/Tags/Tags'
-import Votes from '../../components/Votes/Votes'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import './QuestionPage.css'
+import React, { useState, useContext, useEffect } from 'react';
+import { QuestionListContext } from '../../contexts/QuestionListContext';
+import QuestionApiService from '../../services/question-api-service';
+import AnswerForm from '../../components/AnswerForm/AnswerForm';
+import Tags from '../../components/Tags/Tags';
+import Votes from '../../components/Votes/Votes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import './QuestionPage.css';
 
 export default function QuestionPage(props) {
     const {questionId} = props.match.params;
-    const { setError } = useContext(QuestionListContext)
-    const [answers, setAnswers] = useState([])
-    const answerItems = useAnswerItems(answers)
+    const { setError } = useContext(QuestionListContext);
+    const [answers, setAnswers] = useState([]);
+    const answerItems = useAnswerItems(answers);
     const [question, setQuestion] = useState({
         id: '',
         question_title: '',
@@ -21,33 +21,33 @@ export default function QuestionPage(props) {
         votes: '',
         tags: [],
         user: []
-    })
+    });
 
     function addNewAnswer(updatedAnswersList) {
         setAnswers(updatedAnswersList);
       }
 
     useEffect(() => {
-        setError(null)
-    }, [])
+        setError(null);
+    }, []);
 
 
     useEffect(() => {
         const fetchQuestion = async () => {
             const currQuestion = await QuestionApiService.getQuestionById(questionId);
-            setQuestion({...currQuestion, tags: currQuestion.tags.split(",")})
+            setQuestion({...currQuestion, tags: currQuestion.tags.split(",")});
         }
-        fetchQuestion()
-    }, [])
+        fetchQuestion();
+    }, []);
 
     useEffect(() => {
         const fetchAnswers = async () => {
             const answers = await QuestionApiService.getQuestionAnswers(questionId)
-            answers.sort((a, b) => b.votes - a.votes)
-            setAnswers(answers)
-        }
-        fetchAnswers()
-    }, [])
+            answers.sort((a, b) => b.votes - a.votes);
+            setAnswers(answers);
+        };
+        fetchAnswers();
+    }, []);
 
     //TODO: ADD error handling
     return(

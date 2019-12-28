@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import RegistrationPage from './RegistrationPage';
+import AnswerForm from './AnswerForm';
 
 describe('RegistrationPage component', () => { 
     // Smoke test
@@ -9,7 +9,7 @@ describe('RegistrationPage component', () => {
        const div =  document.createElement('div');
        ReactDOM.render(
            <BrowserRouter>
-               <RegistrationPage />
+               <AnswerForm />
            </BrowserRouter>, 
            div)
        ReactDOM.unmountComponentAtNode(div)

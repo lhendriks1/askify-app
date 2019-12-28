@@ -7,23 +7,23 @@ export default function LoginForm(props) {
     const errorDiv = error ? <div className="error">{error}</div> : '';
 
     const handleSubmitJwtAuth = e => {
-        e.preventDefault()
-        setError(null)
-        const { user_name, password } = e.target
+        e.preventDefault();
+        setError(null);
+        const { user_name, password } = e.target;
 
         AuthApiService.postLogin({
            user_name: user_name.value,
            password: password.value,
         })
         .then(res => {
-            user_name.value=''
-            password.value=''
-            props.onLoginSuccess()
+            user_name.value='';
+            password.value='';
+            props.onLoginSuccess();
         })
         .catch(res => {
-            setError(res.error)
+            setError(res.error);
         })
-    }
+    };
 
     return (
         <form

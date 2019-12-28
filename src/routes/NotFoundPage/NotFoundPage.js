@@ -1,6 +1,6 @@
-import React from 'react'
-import './NotFoundPage.css'
-import astronaut from '../../resources/astronaut.jpg'
+import React from 'react';
+import './NotFoundPage.css';
+import astronaut from '../../resources/astronaut.jpg';
 
 export default function NotFoundPage(props) {
     return (
@@ -14,5 +14,5 @@ export default function NotFoundPage(props) {
             <a className='attribution' href="https://www.freepik.com/free-photos-vectors/people">People vector created by grmarc - www.freepik.com</a>
         </div>
 
-    )
+    );
 }

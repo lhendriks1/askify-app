@@ -1,13 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Tags from '../Tags/Tags'
-import './QuestionListItem.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Tags from '../Tags/Tags';
+import './QuestionListItem.css';
 
 export default function QuestionListItem(props) {
-    const { id, question_title, user, date_created, question_body, number_of_answers, tags, votes} = props
+    const { id, question_title, user, date_created, question_body, number_of_answers, tags, votes} = props;
 
-    const ans = (number_of_answers === 1) ? "answer" : "answers"
-    const vote = (votes === 1) ? "vote" : "votes"
+    const ans = (number_of_answers === 1) ? "answer" : "answers";
+    const vote = (votes === 1) ? "vote" : "votes";
 
     return (
         <section className="qa-item">

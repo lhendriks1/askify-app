@@ -15,4 +15,4 @@ describe('QuestionForm component', () => {
            div)
        ReactDOM.unmountComponentAtNode(div)
     })  
-})
+});

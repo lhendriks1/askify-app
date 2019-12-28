@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { AuthContext } from '../../contexts/AuthContext'
-import TokenService from '../../services/token-service'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import TokenService from '../../services/token-service';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { Hyph } from '../Utils/Utils'
-import './nav.css'
+import { Hyph } from '../Utils/Utils';
+import './nav.css';
 
 export default function Nav() {
-    const { logInRender, logOutRender } = useLoginStatus()
-    const {loginStatus}= useContext(AuthContext)
+    const { logInRender, logOutRender } = useLoginStatus();
+    const {loginStatus}= useContext(AuthContext);
 
     return (
         <nav className="Nav">
@@ -24,15 +24,15 @@ export default function Nav() {
             </div>
         </nav>
     )
-}
+};
 
 function useLoginStatus() {
-    const { updateLoginStatus } = useContext(AuthContext)
+    const { updateLoginStatus } = useContext(AuthContext);
 
     const handleLogoutClick = () => {
-        updateLoginStatus(false)
-        TokenService.clearAuthToken()
-    }
+        updateLoginStatus(false);
+        TokenService.clearAuthToken();
+    };
 
     const renderLogoutLink = () => (
             <div className='Nav__logged-in'>
@@ -61,5 +61,5 @@ function useLoginStatus() {
         logInRender: renderLoginLink(),
         logOutRender: renderLogoutLink(),
     }
-}
+};
 
