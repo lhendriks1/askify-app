@@ -10,6 +10,10 @@ export default function AnswerForm(props) {
         e.preventDefault();
         setError(null);
         const { newAnswer } = e.target;
+        if (newAnswer.value.length === 0) {
+            setError('Answer must not be blank')
+            return;
+        }
         const answerResponse = await QuestionApiService.postAnswer({
             question_id: props.questionId, 
             answer: newAnswer.value
