@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useLayoutEffect } from 'react';
 import { QuestionListContext } from '../../contexts/QuestionListContext';
 import QuestionApiService from '../../services/question-api-service';
 import AnswerForm from '../../components/AnswerForm/AnswerForm';
@@ -32,7 +32,7 @@ export default function QuestionPage(props) {
     }, []);
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const fetchQuestion = async () => {
             const currQuestion = await QuestionApiService.getQuestionById(questionId);
             setQuestion({...currQuestion, tags: currQuestion.tags.split(",")});
@@ -54,7 +54,7 @@ export default function QuestionPage(props) {
         <div className="QuestionPage">
             <button className="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button>
             <section className="QuestionPage__question-details">
-                <Votes item={question} voteCount={question.votes} itemType={'question'}/>
+                <Votes item={question} itemType={'question'}/>
                 <div>
                     <h1>{question.question_title}</h1>
                     <p className="QuestionPage__question-details">{question.question_body}</p>

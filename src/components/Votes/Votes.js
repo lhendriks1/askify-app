@@ -6,34 +6,34 @@ import questionApiService from '../../services/question-api-service';
 
 export default function Votes(props) {
     const { item, itemType } = props;
-    const [votes, setVotes] = useState();
+    const [votes, setVotes] = useState()
 
     useLayoutEffect(() => {
         setVotes(item.votes);
     }, [item.votes]);
 
     useEffect(() => {
-        if (itemType === 'question') {
+        if (itemType === 'question' && !!votes) {
                 questionApiService.updateQuestionFields({
                     questionId: item.id, 
                     questionFields : { votes: votes }
                 });
-            } else if (itemType === 'answer') {
+            } else if (itemType === 'answer' && !!votes) {
                 questionApiService.updateAnswerFields({
                      answerId: item.id,
                      answerFields: { votes: votes }
                 });
             }
-        }, [votes, item.id, itemType]);
+        }, [votes]);
 
     return (
         <div className="QuestionPage__votes-count">
-            <button 
+            <button
                 onClick={() => setVotes(prevCount => prevCount + 1)}>
-                <FontAwesomeIcon icon={faCaretUp} size="2x" />
+                <FontAwesomeIcon icon={faCaretUp} size="2x" id="increment"/>
             </button>
             {votes}
-            <button 
+            <button
                 onClick={() => setVotes(prevCount => prevCount - 1)}>
                 <FontAwesomeIcon icon={faCaretDown} size="2x" />
             </button>
