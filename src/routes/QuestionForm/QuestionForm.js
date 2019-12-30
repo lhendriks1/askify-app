@@ -1,7 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {QuestionListContext} from '../../contexts/QuestionListContext';
-import { Link } from 'react-router-dom'
 import QuestionApiService from '../../services/question-api-service';
 import { Input, Textarea } from '../../components/Utils/Utils';
 import { Button } from '@material-ui/core';
@@ -16,6 +15,17 @@ export default function QuestionForm(props){
         e.preventDefault();
         setError(null);
         const { question_title, question_body, tags } = e.target
+
+        if (question_title.value.length === 0) {
+            setError('Question title must not be blank')
+            return;
+        }
+
+        if (question_body.value.length === 0) {
+            setError('Question body must not be blank');
+            return;
+        }
+
         const tagsFormatted = tags.value.split(", ").map(tag => tag.trim())
         const questionResponse = await QuestionApiService.postQuestion({
             title: question_title.value, 
@@ -30,20 +40,16 @@ export default function QuestionForm(props){
 
     }
 
-
-
-
     return(
         <section className="question-form">
             <Link to='/dashboard' className='back'>
-                <i class="material-icons back-arrow">arrow_back_ios</i>
+                <i className="material-icons back-arrow">arrow_back_ios</i>
                 Back
             </Link>
             <form
                 onSubmit={handleSubmit}
             >
                 <h1>Ask a new Question</h1>
-                {errorDiv}
                 <fieldset>
                     <label htmlFor="question_title">Title (required)</label>
                     <Input type="text" id="question_title" name="question_title" aria-label="title for question" aria-required="true"></Input>
@@ -52,6 +58,7 @@ export default function QuestionForm(props){
                     <label htmlFor="tags">Tags (optional)</label>
                     <div id="tagConstraint">Add up to 5 tags separated by a comma, e.g.: Salesforce, IT, Cases</div>
                     <Input type="text" id="tags" name="tags" aria-label="tags for question" aria-required="false" aria-describedby="tagConstraint"></Input>
+                    {errorDiv}
                     <Button type='submit' variant='contained' color='primary'>
                         Post
                     </Button>

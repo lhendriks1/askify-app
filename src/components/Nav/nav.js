@@ -47,18 +47,6 @@ function useLoginStatus() {
         <Link innerRef={ref} {...props} />
     ))
 
-    const LinkRegister = React.forwardRef((props, ref) => (
-        <Link innerRef={ref} {...props} />
-    ))
-
-    const LinkLogin = React.forwardRef((props, ref) => (
-        <Link innerRef={ref} {...props} />
-    ))
-
-    const LinkLogout = React.forwardRef((props, ref) => (
-        <Link innerRef={ref} {...props} />
-    ))
-
     const handleLogoutClick = () => {
         updateLoginStatus(false);
         TokenService.clearAuthToken();

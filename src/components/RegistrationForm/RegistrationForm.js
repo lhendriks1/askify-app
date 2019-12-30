@@ -16,6 +16,7 @@ export default function RegistrationForm(props) {
     const handleSubmit = e => {
         e.preventDefault();
         setError(null);
+        
         const { full_name, user_name, password } = e.target;
 
         AuthApiService.postUser({

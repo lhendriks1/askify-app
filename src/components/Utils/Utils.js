@@ -25,12 +25,6 @@ export function Textarea({ className, ...props }) {
     )
 }
 
-export function Textarea({ className, ...props }) {
-    return (
-        <textarea className={['Textarea', className].join(' ')} {...props} />
-    )
-}
-
 export function Required({ className, ...props}) {
     return (
         <span className={['Input', className].join(' ')} {...props}>
