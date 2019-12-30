@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -5,7 +6,7 @@ import TokenService from '../../services/token-service';
 import Button from '@material-ui/core/Button';
 import logo from '../../resources/logo.png';
 import hummingbird from '../../resources/hummingbird.png';
-// import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Hyph } from '../Utils/Utils';
@@ -33,6 +34,18 @@ export default function Nav() {
 
 function useLoginStatus() {
     const { updateLoginStatus } = useContext(AuthContext);
+
+    const LinkRegister = React.forwardRef((props, ref) => (
+        <Link innerRef={ref} {...props} />
+    ))
+
+    const LinkLogin = React.forwardRef((props, ref) => (
+        <Link innerRef={ref} {...props} />
+    ))
+
+    const LinkLogout = React.forwardRef((props, ref) => (
+        <Link innerRef={ref} {...props} />
+    ))
 
     const LinkRegister = React.forwardRef((props, ref) => (
         <Link innerRef={ref} {...props} />

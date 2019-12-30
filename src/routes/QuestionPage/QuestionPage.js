@@ -46,7 +46,6 @@ export default function QuestionPage(props) {
         a10: 1  
     }
     
-
     useLayoutEffect(() => {
         const fetchQuestion = async () => {
             const currQuestion = await QuestionApiService.getQuestionById(questionId);

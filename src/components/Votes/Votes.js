@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect, useLayoutEffect } from 'react';
 import { VoteHistoryContext } from '../../contexts/VoteHistoryContext'
 import questionApiService from '../../services/question-api-service';
