@@ -1,5 +1,7 @@
 .ErrorBoundary__container {
-  display: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #8A80BB;
   box-shadow: inset -10px -10px 60px rgb(116, 107, 165); 
   height: 100vh;
@@ -29,12 +31,15 @@
 }
 
 .ErrorBoundary__home-btn {
-  font-size: 16px;
-  background-color: black;
+  font-size: 24px;
+  background-color: gb(7, 7, 31);
   color: white;
   padding: 6px 12px;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 4px;
+  display: block;
 }
 
 .attribution {

@@ -17,8 +17,7 @@
 }
 
 h1.LandingPage__logotype {
-    /* font-family: 'Rubik', sans-serif; */
-    /* font-family: 'Bebas Neue', cursive; */
+
     font-family: "Libre Franklin", "Open Sans", sans-serif;
     text-transform: uppercase;
     color: rgb(7, 7, 31);
@@ -43,26 +42,9 @@ h1.LandingPage__logotype {
     align-items: center;
 }
 
-/* .benefits > li {
-    background-color: rgba(255, 255, 255, 0.6);
-    width: 80%;
-    border-radius: 12px;
-    padding: 6px 16px;
-    margin: 10px;
-    text-align: center;
-    box-shadow: 
-        0px 3px 1px -2px rgba(0,0,0,0.2), 
-        0px 2px 2px 0px rgba(0,0,0,0.14), 
-        0px 1px 5px 0px rgba(0,0,0,0.12);
-} */
-
 ul.benefits {
     margin-top: 16px;
 }
-
-/* .benefits-icons {
-    display: none;
-} */
 
 .benefits-icons {
     height: 60px;
@@ -111,7 +93,6 @@ li.benefit {
     align-items: center;
     font-size: 13px;
     font-family: "Libre Franklin", "Open Sans", sans-serif;
-    /* font-weight: bold; */
     text-transform: uppercase;
     margin-bottom: 10px;
     border-radius: 4px;

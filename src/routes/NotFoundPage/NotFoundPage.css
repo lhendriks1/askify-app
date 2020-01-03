@@ -1,5 +1,7 @@
 .NotFoundPage__container {
-    display: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #F29455;
     box-shadow: inset -10px -10px 70px rgb(201, 116, 59);
     height: 100vh;
@@ -7,7 +9,7 @@
 }
 
 .NotFoundPage__div {
-    color: black;
+    color: rgb(7, 7, 31);
     padding: 30px;
 }
 
@@ -26,15 +28,19 @@
     margin: 0px;
     font-size: 36px;
     font-weight: bolder;
+    color: rgb(7, 7, 31);
 }
 
 .NotFoundPage__home-btn {
-    font-size: 16px;
-    background-color: black;
+    font-size: 24px;
+    background-color: rgb(7, 7, 31);
     color: white;
     padding: 6px 12px;
     margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
     border-radius: 4px;
+    display: block;
 }
 
 .attribution {
