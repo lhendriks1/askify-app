@@ -84,12 +84,7 @@ a:hover {
 /*--CSS FOR TABLETS--*/
 
 @media only screen and (min-width: 600px) {
-    nav {
-        padding: 10px 40px;
-        left: 0;
-        right: 0;
-    }
-
+    
     main {
         margin: 40px 40px;
     }
