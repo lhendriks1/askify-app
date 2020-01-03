@@ -1,106 +1,74 @@
 @import url('https://fonts.googleapis.com/css?family=Lora&display=swap:bold');
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville|Libre+Franklin&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Rubik:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
 
 .homepage-wrapper {
     min-height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
-
-}
-
-.homepage-wrapper::after {
-    content: "";
-    background-image: url('../../resources/vector.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.15;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1
-}
-
-footer {
-    width: 100vw;
-    margin-top: 20px;
-}
-
-.Landing_Page__logotype-image {
-    height: 255px;
-    position: absolute;
-    top: -50px;
-    right: -200px;
-    opacity: 15%;
-    z-index: -1;
+    text-align: center;
     overflow: hidden;
+    overflow-x: hidden;
+
+    /* old vendor prefixes */
+    overflow: -moz-hidden-unscrollable;
 }
 
 h1.LandingPage__logotype {
-    font-family: 'Rubik', sans-serif;
-    font-size: 36px;
+    /* font-family: 'Rubik', sans-serif; */
+    /* font-family: 'Bebas Neue', cursive; */
+    font-family: "Libre Franklin", "Open Sans", sans-serif;
+    text-transform: uppercase;
+    color: rgb(7, 7, 31);
+    font-size: 30px;
     margin: 0px;
+    font-weight: normal;
 }
 
 .contact {
     display: flex;
     justify-content: center;
+    padding: 4px;
+}
+
+.contact li {
+    padding: 12px;
 }
 
 .benefits {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
-.benefits > li {
+/* .benefits > li {
     background-color: rgba(255, 255, 255, 0.6);
     width: 80%;
     border-radius: 12px;
     padding: 6px 16px;
     margin: 10px;
-    align-items: center;
+    text-align: center;
     box-shadow: 
         0px 3px 1px -2px rgba(0,0,0,0.2), 
         0px 2px 2px 0px rgba(0,0,0,0.14), 
         0px 1px 5px 0px rgba(0,0,0,0.12);
-    transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
+} */
+
+ul.benefits {
+    margin-top: 16px;
 }
 
-.benefits > li:first-of-type {
-    animation: slidein 0.5s forwards;
-    animation-delay: 0.2s;
-    animation-name: slidein;
-}
+/* .benefits-icons {
+    display: none;
+} */
 
-.benefits > li:nth-of-type(2) {
-    animation: slidein 0.5s forwards;
-    animation-delay: 0.5s;
-    animation-name: slidein;
-}
-
-.benefits > li:nth-child(3) {
-    animation: slidein 0.5s forwards;
-    animation-delay: .8s;
-    animation-name: slidein;
-}
-
-@keyframes slidein {
-    100% { transform: translateX(0%); }
-}
-
-@-moz-keyframes slidein {
-    100% { -moz-transform: translateX(100%); }
-}
-
-@-webkit-keyframes slidein {
-    100% { -webkit-transform: translateX(100%); }
+.benefits-icons {
+    height: 60px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 section.LandingPage {
@@ -108,10 +76,19 @@ section.LandingPage {
     padding: 10px 10px;
 }
 
-.LandingPage__puzzle-pieces, .LandingPage__how-it-works {
-    max-width: 200px;
-    max-height: 200px;
-    margin-top: 16px;
+.LandingPage__puzzle-pieces {
+    text-align: center;
+}
+
+.puzzle-pieces {
+    max-width: 230px;
+    max-height: 250px;
+}
+
+
+.LandingPage__how-it-works {
+    max-width: 280px;
+    max-height: 250px;
 }
 
 .LandingPage > h2, h3 {
@@ -120,27 +97,215 @@ section.LandingPage {
 
 .LandingPage > h2 {
     margin-top: 30px;
-    padding-bottom: 0px;
+    padding-bottom: 8px;
     margin-bottom: 0px;
 }
 
 .LandingPage > h3 {
-    padding-top: 0px;
+    padding-top: 8px;
     margin-top: 0px;
 }
 
-.orange {
-    border: 5px solid rgba(252, 186, 6, 0.7);
+li.benefit {
+    padding: 12px;
+    align-items: center;
+    font-size: 13px;
+    font-family: "Libre Franklin", "Open Sans", sans-serif;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    border-radius: 4px;
 }
 
-.green {
-    border: 5px solid rgba(63, 181, 104, 0.7);
+li.blue {
+    background-color: rgb(153, 201, 233);
+ 
 }
 
-.blue {
-    border: 5px solid rgba(63, 81, 181, 0.7);
+li.green {
+    background-color: rgb(162, 223, 204);
+}
+
+li.orange {
+    background-color: rgb(235, 232, 211);
+}
+
+.icon {
+    max-height: 60px;
+    margin-right: 14px;
 }
 
 .LandingPage__tag-line {
     margin: 10px 0px 24px;
+}
+
+p.artist-attribution {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 14px;
+}
+
+h3.subtitle span {
+    background:#fff; 
+    padding:0 10px;  
+  }
+
+.subtitle {
+    font-weight: normal;
+    text-decoration: none;
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid rgb(73, 73, 73); 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+    background-color: white;
+  }
+
+  .HowItWorks {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    height: 100px;
+    font-size: 15px;
+    font-family: "Libre Franklin", "Open Sans", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 16px;
+    margin-bottom: 5px;
+    color: rgb(7, 7, 31);
+  }
+
+  .subsection-one {
+    background-image: url('../../resources/blob-2.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .subsection-two {
+    background-image: url('../../resources/blob-9.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    padding-left: 65px;
+  }
+
+  .subsection-three {
+    background-image: url('../../resources/blob-4.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .subsection-four {
+    background-image: url('../../resources/blob-10.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    padding-left: 65px;
+  }
+
+
+/*--CSS FOR TABLETS--*/
+
+@media only screen and (min-width: 600px) {
+
+    .benefits {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: top;
+        text-align: center;
+        padding-top: 20px;
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+
+    .LandingPage__puzzle-pieces {
+        display: none;
+    }
+
+    .HowItWorks {
+        width: 85%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 14px;
+    }
+
+    .benefits > li {
+        position: relative;
+        border-radius: 12px;
+        padding: 110px 16px 6px;
+        margin: 10px;
+        height: 215px;
+        box-shadow: 
+            0px 3px 1px -2px rgba(0,0,0,0.2), 
+            0px 2px 2px 0px rgba(0,0,0,0.14), 
+            0px 1px 5px 0px rgba(0,0,0,0.12);
+    }
+
+    .icon {
+        display: block;
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+        max-height: 100px;
+        z-index: 0;
+    }
+
+    .padlock {
+        top: 65px;
+    }
+
+}
+
+/*---css for laptops---*/
+@media only screen and (min-width: 1200px) {
+
+    .LandingPage {
+        text-align: left;
+        font-size: 1.1rem;
+    }
+
+    .HowItWorks_row {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .LandingPage__how-it-works {
+        max-height: 350px;
+        max-width: 500px;
+    }
+
+    .HowItWorks_content {
+        margin-top: 40px;
+        width: 80%;
+    }
+
+    section.LandingPage {
+        padding-bottom: 40px;
+        border-bottom: 1px solid black;
+    }
+    
+    h3.subtitle {
+        font-weight: normal;
+        text-decoration: none;
+        width: 100%; 
+        text-align: left; 
+        border: none;
+        border-bottom: none; 
+        margin: 0px; 
+      }
+
+      h3.subtitle span {
+        font-style: italic;
+        padding: 0px;  
+      }
+
+      .benefits li {
+          margin: 20px;
+      }
 }

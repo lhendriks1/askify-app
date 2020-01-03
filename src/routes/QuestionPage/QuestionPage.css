@@ -3,7 +3,7 @@
     text-align: left;
 }
 
-.ul-answers li, ul, p {
+.QuestionPage .ul-answers li, ul, p {
     margin: 0px;
     padding: 0px;
     display: block;
@@ -41,15 +41,30 @@ textarea {
 }
 
 .QuestionPage__answer-info, .QuestionPage__author-date {
-    font-size: 12px;
+    font-size: .95em;
 }
 
 .QuestionPage__question-details {
     display: flex;
 }
 
+h2.answer-count {
+    padding-top: 20px;
+    font-size: 1.1em;
+}
+
+.QuestionPage__question_title {
+    font-size: 1.1em;
+}
 
 
 
+/*--CSS FOR TABLETS--*/
+
+@media only screen and (min-width: 600px) {
+    .QuestionPage__answer-info, .QuestionPage__author-date {
+        font-size: 1em;
+    }
+}
 
 

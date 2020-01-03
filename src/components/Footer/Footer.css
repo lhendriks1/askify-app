@@ -1,0 +1,27 @@
+footer {
+    width: 100vw;
+    align-content: center;
+    padding: 16px 10px;
+    /* background-image: linear-gradient(rgb(39, 39, 39), black); */
+    /* color: white; */
+    border-bottom: 3px solid black;
+    /* position: fixed;
+    bottom: 0; */
+}
+
+.contact a {
+    color: white;
+    text-decoration: none;
+}
+
+.contact a:visited {
+    color: white;
+}
+
+@media only screen and (min-width: 600px) {
+    footer {
+        padding: 16px 40px;
+        left: 0;
+        right: 0;
+    }
+}

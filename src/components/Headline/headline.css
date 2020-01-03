@@ -6,16 +6,33 @@
 .tabs ul {
     display: flex;
     margin-bottom: 16px;
-    border: 1px solid #ddd;
-    background-color: white;
+    background-color: rgb(188, 190, 207);
+    border-radius: 4px;
+    padding-left: 6px;
+}
+
+li {
+    padding: 0;
 }
 
 li .tab {
     font-size: 1em;
+    color: rgb(3, 3, 14);
+    padding: 12px;
+    padding-top: 18px;
+    padding-left: 14px;
+    text-transform: uppercase;
+
 }
 
 .active {
-    border-bottom: 5px solid orange;
+    background-color: white;
+    border-top: 6px solid rgb(188, 190, 207);
+    border-right: 1px solid rgb(188, 190, 207);
+    border-left: 1px solid rgb(188, 190, 207);
+    border-radius: 26px 4px 0px 0px;
+    font-weight: bold;
+    text-shadow: 0.5px 0.5px #8f8f8f;
 
 }
 
@@ -51,4 +68,11 @@ button {
 
 a {
     text-decoration: none;
+}
+
+
+/*--CSS FOR TABLETS--*/
+
+@media only screen and (min-width: 600px) {
+
 }

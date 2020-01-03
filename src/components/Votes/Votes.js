@@ -1,61 +1,82 @@
-import React, { useState, useContext, useEffect, useLayoutEffect } from 'react';
-import { VoteHistoryContext } from '../../contexts/VoteHistoryContext'
-import questionApiService from '../../services/question-api-service';
+import React, { useState, useEffect } from 'react';
+import questionVoteApiService from '../../services/question_vote-api-service';
+import answerVoteApiService from '../../services/answer_vote-api-service';
+
+
 import './Votes.css'
 
 export default function Votes(props) {
     const { item, itemType } = props;
     const [votes, setVotes] = useState()
-    const [voteUpdisabled, setVoteUpDisabled] = useState(true)
+    const [activeUserVote, setActiveUserVote] = useState()
+    const [voteUpDisabled, setVoteUpDisabled] = useState(true)
     const [voteDownDisabled, setVoteDownDisabled] = useState(true)
 
     useEffect(() => {
-        console.log(item.userVote)
-        if (item.userVote === 0) {
+        if (activeUserVote === 0) {
             setVoteDownDisabled(false)
             setVoteUpDisabled(false)
         }
-        else if (item.userVote === 1) {
+        else if (activeUserVote === 1) {
             setVoteDownDisabled(false)
             setVoteUpDisabled(true)
         }
-        else if (item.userVote === -1) {
+        else if (activeUserVote === -1) {
             setVoteDownDisabled(true)
             setVoteUpDisabled(false)
         }
-    }, [item.userVote])
+    }, [activeUserVote])
 
     useEffect(() => {
-        setVotes(item.votes);
-    }, [item.votes]);
+        setVotes(item.sum_of_votes);
+        setActiveUserVote(item.active_user_vote);
+    }, [item.sum_of_votes, item.active_user_vote]);
 
-    useEffect(() => {
+    const handleUpVote = () => {
+        setVotes(prevCount => prevCount + 1);
+        setActiveUserVote(prevVote => prevVote + 1);
+
+        if (itemType === 'question') {
+            questionVoteApiService.patchVote({
+                questionId: item.id, 
+                vote: activeUserVote + 1,
+            });
+        } else if (itemType === 'answer') {
+            answerVoteApiService.patchVote({
+                 answerId: item.id,
+                 vote: item.active_user_vote + 1
+            });
+        }
+    }
+
+    const handleDownVote = () => {
+        setVotes(prevCount => prevCount - 1);
+        setActiveUserVote(prevVote => prevVote - 1);
+
         if (itemType === 'question' && !!votes) {
-                questionApiService.updateQuestionFields({
-                    questionId: item.id, 
-                    questionFields : { votes: votes }
-                });
-            } else if (itemType === 'answer' && !!votes) {
-                questionApiService.updateAnswerFields({
-                     answerId: item.id,
-                     answerFields: { votes: votes }
-                });
-            }
-        }, [votes]);
+            questionVoteApiService.patchVote({
+                questionId: item.id,
+                vote: activeUserVote - 1
+            })
+        } else if (itemType === 'answer' && !!votes) {
+            answerVoteApiService.patchVote({
+                answerId: item.id,
+                vote: item.active_user_vote - 1
+            })
+        }
+    }
 
     return (
         <div className="QuestionPage__votes-count">
             <button 
-                disabled={voteUpdisabled}
-                onClick={() => setVotes(prevCount => prevCount + 1)}>
-                {/* <FontAwesomeIcon icon={faCaretUp} size="2x" /> */}
+                disabled={voteUpDisabled}
+                onClick={handleUpVote}>
                 <i className="material-icons md-48">arrow_drop_up</i>
             </button>
             {votes}
             <button 
                 disabled={voteDownDisabled}
-                onClick={() => setVotes(prevCount => prevCount - 1)}>
-                {/* <FontAwesomeIcon icon={faCaretDown} size="2x" /> */}
+                onClick={handleDownVote}>
                 <i className="material-icons md-48">arrow_drop_down</i>
 
             </button>

@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { QuestionListContext } from '../../contexts/QuestionListContext';
-import { VoteHistoryContext } from '../../contexts/VoteHistoryContext';
 import QuestionApiService from '../../services/question-api-service';
 import AnswerForm from '../../components/AnswerForm/AnswerForm';
 import Tags from '../../components/Tags/Tags';
@@ -11,8 +10,6 @@ import './QuestionPage.css';
 export default function QuestionPage(props) {
     const {questionId} = props.match.params;
     const { setError } = useContext(QuestionListContext)
-    const [userVoteHistory, setUserVoteHistory] = useState()
-    // const { userVoteHistory, updateVote } = useContext(VoteHistoryContext)
     const [answers, setAnswers] = useState([])
     const answerItems = useAnswerItems(answers)
     const [question, setQuestion] = useState({
@@ -20,10 +17,10 @@ export default function QuestionPage(props) {
         question_title: '',
         date_created: '',
         number_of_answers: '',
-        votes: '',
+        sum_of_votes: '',
+        active_user_vote: '',
         tags: [],
         user: [],
-        userVote: 0,
     });
 
     function addNewAnswer(updatedAnswersList) {
@@ -33,24 +30,11 @@ export default function QuestionPage(props) {
     useEffect(() => {
         setError(null);
     }, []);
-
-    const userVote = {
-        q1: -1,
-        q2: 1,
-        q3: -1,
-        a1: 1,
-        a2: 1,
-        a3: -1,
-        a4: 1,
-        a11: -1,
-        a10: 1  
-    }
     
     useLayoutEffect(() => {
         const fetchQuestion = async () => {
             const currQuestion = await QuestionApiService.getQuestionById(questionId);
-            const vote = userVote[`q${questionId}`] || 0;
-            setQuestion({...currQuestion, tags: currQuestion.tags.split(","), userVote: vote});
+            setQuestion({...currQuestion, tags: currQuestion.tags.split(",")});
         }
         fetchQuestion();
     }, []);
@@ -58,11 +42,7 @@ export default function QuestionPage(props) {
     useEffect(() => {
         const fetchAnswers = async () => {
             const answers = await QuestionApiService.getQuestionAnswers(questionId);
-            answers.forEach(ans => {
-                const vote = userVote[`a${ans.id}`] || 0
-                    ans.userVote = vote
-            });
-            answers.sort((a, b) => b.votes - a.votes);
+            answers.sort((a, b) => b.sum_of_votes - a.sum_of_votes);
             setAnswers(answers);
         }
         fetchAnswers();
@@ -70,7 +50,6 @@ export default function QuestionPage(props) {
 
     return(
         <div className="QuestionPage">
-            {/* <button className="back" onClick={()=> props.history.push('/dashboard')}><FontAwesomeIcon icon={faChevronLeft} /> Back</button> */}
             <Link to='/dashboard' className='back'>
                 <i className="material-icons back-arrow">arrow_back_ios</i>
                 Back
@@ -78,7 +57,7 @@ export default function QuestionPage(props) {
             <section className="QuestionPage__question-details">
                 <Votes item={question} itemType={'question'}/>
                 <div>
-                    <h1>{question.question_title}</h1>
+                    <h1 className='QuestionPage__question_title'>{question.question_title}</h1>
                     <p className="QuestionPage__question-details">{question.question_body}</p>
                     <Tags tags={question.tags} {...props} />
                     <div className='QuestionPage__author-date'>Asked by {question.user.user_name} on {new Date(question.date_created).toLocaleDateString()}</div>

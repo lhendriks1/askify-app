@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 export const QuestionListContext = React.createContext({})
 
 export const QuestionListContextProvider = props => {
-    //Use state to keep the values
     const [error, setError] = useState(null);
     const [results, setResults] = useState([]);
     const [searchResults, setSearchResults] = useState(results);
@@ -31,13 +30,13 @@ function filterBySelectedView() {
     } 
     else if (view === 'popular') {
         function compare(a, b) {
-            const ansA = a.votes;
-            const ansB = b.votes;
+            const A = a.sum_of_votes;
+            const B = b.sum_of_votes;
 
             let comparison = 0;
-            if (ansA > ansB) {
+            if (A > B) {
                 comparison = -1;
-            } else if (ansA < ansB) {
+            } else if (A < B) {
                 comparison = 1;
             }
             return comparison;

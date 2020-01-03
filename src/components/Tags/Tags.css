@@ -9,10 +9,19 @@ ul.tags {
 
 
 li.tags {
-    background-color: #ddd;
+    background-color: rgb(233, 245, 255);
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 0.95em;
     margin-right: 8px;
     border: 1px solid #ddd;
     padding: 4px 8px;
+}
+
+
+/*--CSS FOR TABLETS--*/
+
+@media only screen and (min-width: 600px) {
+    li.tags {
+        font-size: 1em;
+    }
 }

@@ -6,9 +6,9 @@ hr {
 }
 
 .title {
+    font-family: 'Libre Baskerville', serif;
     font-weight: bold;
-    font-size: 1.1em; 
-    line-height: 1.6em;
+    font-size: 1.05em; 
 }
 
 .question {
@@ -45,8 +45,8 @@ hr {
 }
 
 .answers, .votes {
-    border-radius: 4px;
     font-size: 14px;
+    border-radius: 4px;
     margin-right: 8px;
     border: 1px solid #ddd;
     padding: 4px 8px;
@@ -56,6 +56,14 @@ a {
     font-weight: normal;
     /* color: inherit; */
     /* text-decoration: inherit; */
+}
+
+a:active {
+    color: #536dfe;
+}
+
+a:visited {
+    color: inherit;
 }
 
 .QuestionListItem__author-date {

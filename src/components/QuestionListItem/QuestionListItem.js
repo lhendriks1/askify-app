@@ -4,16 +4,16 @@ import Tags from '../Tags/Tags';
 import './QuestionListItem.css';
 
 export default function QuestionListItem(props) {
-    const { id, question_title, user, date_created, question_body, number_of_answers, tags, votes} = props;
+    const { id, question_title, user, date_created, question_body, number_of_answers, tags, sum_of_votes} = props;
 
     const ans = (number_of_answers === 1) ? "answer" : "answers";
-    const vote = (votes === 1) ? "vote" : "votes";
+    const votes = (sum_of_votes === 1) ? "vote" : "votes";
 
     return (
         <section className="qa-item">
             <div className="stats">
                 <div className="answers">{number_of_answers} {ans}</div>
-                <div className="votes">{votes} {vote}</div>
+                <div className="votes">{sum_of_votes} {votes}</div>
             </div>
             <div className="question">
                 <Link to={`/question/${id}`} className='title'>

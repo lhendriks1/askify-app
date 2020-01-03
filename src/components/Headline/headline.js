@@ -1,17 +1,16 @@
-import React, { useContext, useEffect } from 'react'
-import {Link} from 'react-router-dom'
-import { AuthContext } from '../../contexts/AuthContext'
-import { QuestionListContext } from '../../contexts/QuestionListContext'
-import SearchBox from '../SearchBox/SearchBox'
-import { faUserCheck } from '@fortawesome/free-solid-svg-icons'
-import './headline.css'
+import React, { useContext, useEffect } from 'react';
+import {Link} from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import { QuestionListContext } from '../../contexts/QuestionListContext';
+import SearchBox from '../SearchBox/SearchBox';
+import './headline.css';
 import Button from '@material-ui/core/Button';
 
 import CustomizedSnackBars from '../../components/SnackBar'
 
 export default function Headline() {
     const { registrationMsg } = useContext(AuthContext)
-    const filterList = useFilterItems(["newest", "popular", "unanswered", "all"]);
+    const filterList = useFilterItems(["newest", "popular", "unanswered"]);
 
     return (
         <section className="Headline">
@@ -20,7 +19,6 @@ export default function Headline() {
                 : null
             }
             <div>
-                {/* //<span className="q-count">145 Questions</span> */}
                 <Link to="/new-question">
                     <Button variant='contained' color='primary'>Ask Question</Button>
                 </Link>
