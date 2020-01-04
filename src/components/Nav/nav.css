@@ -8,13 +8,13 @@ nav, footer {
 }
 
 nav {
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
     margin: 0;
     padding: 12px 12px;
+    height: 60px;
     color: white;
   }
 
@@ -36,18 +36,18 @@ nav {
 
 @media only screen and (min-width: 600px) {
   nav {
-    height: 80px;
+    height: 70px;
   }
 
   nav {
-    padding: 35px 40px;
+    padding: 10px 40px;
     left: 0;
     right: 0;
 }
 
   #Nav__logo {
     left: 30px;
-    height: 35px;
+    height: 40px;
 
   }
 }
