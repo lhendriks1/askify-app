@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Askify
+Live app: https://askify.now.sh/
 
-## Available Scripts
+Server repo: https://github.com/lhendriks1/askify-api
 
-In the project directory, you can run:
+## Summary
+Askify is a Question Answer engine for users to post questions, answers and votes. The app has a JWT authentication system.
 
-### `npm start`
+## Motivation
+I use StackOverflow pretty regularly and am super grateful that it exists :D , so I was curious to see how it would be to implement a Q&A engine with a voting feature. I kind of liked the idea of building an app that I can deploy and is usable, but also I can continue to build out more complex features.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech
+Askify is a full-stack stack app built with React, Node, Express, and PostgreSQL. The app has a JWT authentication system and uses bcrypt to salt and hash passwords. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Test Driven Development (TDD)
+- The server was built using test driven development (TDD) methodology with Mocha and Chai. 
+- Unit tests on the React client are done with Jest and Enzyme.
 
-### `npm test`
+### RESTful API
+- The Askify server follows REST API design priciples. The app adheres to SOC best practices, one example being that the client and server are stored in separate repositories and use folder structure to organize components. To simplify server components and increase encapsulation the server utilizes Express Routing and service objects. The server is stateless (all state is held/maintained in the React client). The API has a uniform interface and adheres to HTTP response code definitions.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Database
+- PostgreSQL
+- Postgrator migration tool
+- Knex database query builder
 
 ### Deployment
+- The React client is hosted on Zeit.
+- The Node + Express server and PostgreSQL database are hosted on Heroku.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Mobile First Approach
+- The app is responsive to mobile, tablet and larger screen sizes. I built Askify using a mobile first approach
 
-### `npm run build` fails to minify
+## Screenshots
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![Mobile first design for the landing-page, users can demo the app without creating an account by using the 'demo' button to login as a test user'.](./screenshots/landing_page1.png)
+
+![View of questions sorted by date. Users can filter and sort all questions.](./screenshots/questions_nav.png)
+
+![Users can vote on and answer questions.](./screenshots/questions_page.png)
