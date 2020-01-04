@@ -33,8 +33,8 @@ Askify is a full-stack stack app built with React, Node, Express, and PostgreSQL
 
 ## Screenshots
 
-![Mobile first design for the landing-page, users can demo the app without creating an account by using the 'demo' button to login as a test user'.](./screenshots/landing_page1.png)
+![Mobile first design for the landing-page, users can demo the app without creating an account by using the 'demo' button to login as a test user'.](./screenshots/landing_page1.png | width=150)
 
-![View of questions sorted by date. Users can filter and sort all questions.](./screenshots/questions_nav.png)
+![View of questions sorted by date. Users can filter and sort all questions.](./screenshots/questions_nav.png | width=150)
 
-![Users can vote on and answer questions.](./screenshots/questions_page.png)
+![Users can vote on and answer questions.](./screenshots/questions_page.png | width=150)
