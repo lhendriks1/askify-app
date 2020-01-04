@@ -12,8 +12,10 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
-    padding: 10px 10px;
+    height: 70px;
+    margin: 0;
+    padding: 12px 12px;
+    color: white;
   }
 
 #Nav__logo {
@@ -28,25 +30,24 @@ nav {
 
   filter: FlipH;
   -ms-filter: "FlipH";
-
 }
 
 /*--CSS FOR TABLETS--*/
 
 @media only screen and (min-width: 600px) {
   nav {
-    height: 100px;
+    height: 80px;
   }
 
   nav {
-    padding: 30px 40px;
+    padding: 35px 40px;
     left: 0;
     right: 0;
 }
 
   #Nav__logo {
     left: 30px;
-    height: 40px;
+    height: 35px;
 
   }
 }
