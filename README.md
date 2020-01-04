@@ -32,9 +32,11 @@ Askify is a full-stack stack app built with React, Node, Express, and PostgreSQL
 - The app is responsive to mobile, tablet and larger screen sizes. I built Askify using a mobile first approach
 
 ## Screenshots
+- Mobile first design for the landing-page, users can demo the app without creating an account by using the 'demo' button to login as a test user.
+<img src="./screenshots/landing_page1.png" alt="search box" width="500" >
 
-![Mobile first design for the landing-page, users can demo the app without creating an account by using the 'demo' button to login as a test user'.](./screenshots/landing_page1.png | width=150)
+- View of questions sorted by date. Users can filter and sort all questions.
+<img src="./screenshots/questions_nav.png" alt="questions navigation screenshot" width="500" >
 
-![View of questions sorted by date. Users can filter and sort all questions.](./screenshots/questions_nav.png | width=150)
-
-![Users can vote on and answer questions.](./screenshots/questions_page.png | width=150)
+- Users can vote on and answer questions.
+<img src="./screenshots/questions_page.png" alt="question page screenshot" width="500" >
